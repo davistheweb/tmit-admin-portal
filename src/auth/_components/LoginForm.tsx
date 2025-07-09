@@ -53,7 +53,7 @@ const LoginForm: React.FC = () => {
             } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="text"
             {...register("regNum")}
-            placeholder="Emter username"
+            placeholder="Enter username"
             id="regNum"
           />
           {errors.regNum && (

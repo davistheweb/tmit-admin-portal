@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Login } from "./auth/pages";
 import { Dashboard } from "@/pages/dashboard/Dashboard";
 import { Index } from "@/pages/dashboard/Index";
-import { Profile } from "@/pages/dashboard/Profile";
+import { Applications } from "@/pages/dashboard/Applications";
 import Fees from "@/pages/dashboard/Fees";
 import ChangePassword from "@/pages/dashboard/ChangePassword";
 import OnBoarding from "@/pages/dashboard/OnBoarding";
@@ -20,7 +20,7 @@ const App: React.FC = () => {
           </Route>
           <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<Index />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="applications" element={<Applications />} />
             <Route path="fees" element={<Fees />} />
             <Route path="change-password" element={<ChangePassword />} />
             <Route path="onboarding" element={<OnBoarding />} />

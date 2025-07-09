@@ -15,7 +15,7 @@ export default function IndexPage() {
         <div className="flex flex-col justify-center items-center gap-5">
           <div className="bg-gray-500 h-1 w-15" />
           <Link className="text-bold text-xl" to="/login">
-            Login to continue
+            Click Login to continue
           </Link>
         </div>
       </div>
