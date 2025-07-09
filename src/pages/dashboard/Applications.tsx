@@ -26,9 +26,9 @@ const dummyData = [
 export const Applications: React.FC = () => {
   const isMobile = useIsMobile();
 
-
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-800 p-4 text-gray-900 dark:text-gray-100">
+      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         {isMobile && (
           <button>
@@ -38,8 +38,9 @@ export const Applications: React.FC = () => {
         <h1 className="text-2xl font-bold">Admissions Applications</h1>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded">
+      {/* Table container with horizontal scroll */}
+      <div className="overflow-x-auto w-full">
+        <table className="min-w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg">
           <thead className="bg-gray-100 dark:bg-gray-800">
             <tr>
               <th className="text-left p-3 border-b dark:border-gray-700">
@@ -80,15 +81,17 @@ export const Applications: React.FC = () => {
                 <td className="p-3 border-b dark:border-gray-700">
                   {student.name}
                 </td>
-                <td className="p-3 border-b dark:border-gray-700 text-yellow-600">
+                <td className="p-3 border-b dark:border-gray-700 text-yellow-600 capitalize">
                   {student.status}
                 </td>
-                <td className="p-3 border-b dark:border-gray-700 space-x-2">
-                  <button className="text-green-600 hover:underline inline-flex items-center cursor-pointer">
-                    <CheckCircle className="w-4 h-4 mr-1" /> Approve
+                <td className="p-3 border-b dark:border-gray-700 flex flex-wrap gap-2">
+                  <button className="bg-green-100 text-green-800 px-3 py-1 rounded-md hover:bg-green-200 transition">
+                    <CheckCircle className="w-4 h-4 inline-block mr-1" />
+                    Approve
                   </button>
-                  <button className="text-red-600 hover:underline inline-flex items-center cursor-pointer">
-                    <XCircle className="w-4 h-4 mr-1" /> Reject
+                  <button className="bg-red-100 text-red-800 px-3 py-1 rounded-md hover:bg-red-200 transition">
+                    <XCircle className="w-4 h-4 inline-block mr-1" />
+                    Reject
                   </button>
                 </td>
               </tr>
