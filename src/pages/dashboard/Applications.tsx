@@ -76,7 +76,7 @@ export const Applications: React.FC = () => {
                 <td className="p-3 border-b dark:border-gray-700 text-yellow-600 capitalize">
                   {student.status}
                 </td>
-                <td className="p-3 border-b dark:border-gray-700 flex flex-wrap gap-2">
+                <td className="p-3 border-b dark:border-gray-700 flex gap-2">
                   <button className="bg-green-100 text-green-800 px-3 py-1 rounded-md hover:bg-green-200 transition cursor-pointer">
                     <CheckCircle className="w-4 h-4 inline-block mr-1" />
                     Approve
