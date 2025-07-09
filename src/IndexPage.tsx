@@ -14,7 +14,7 @@ export default function IndexPage() {
         <h1>Hello Administrator, Welcome!</h1>
         <div className="flex flex-col justify-center items-center gap-5">
           <div className="bg-gray-500 h-1 w-15" />
-          <Link className="text-bold text-xl" to="auth/login">
+          <Link className="text-bold text-xl" to="/login">
             Login to continue
           </Link>
         </div>

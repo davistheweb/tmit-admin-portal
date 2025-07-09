@@ -40,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <img src={schoolLogo} alt="Logo" className="h-16 w-16 mr-2" />
           <span className="text-xl font-bold">TMIT</span>
         </div>
-        {!isMobile && (
+        {isMobile && (
           <button
             onClick={closeSidebar}
             className="text-gray-600 hover:text-gray-800 cursor-pointer"
