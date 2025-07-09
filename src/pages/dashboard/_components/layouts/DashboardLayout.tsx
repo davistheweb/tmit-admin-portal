@@ -14,7 +14,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const closeSidebar = () => setSidebarOpen(false);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen ">
       <Sidebar
         isMobile={isMobile}
         sidebarOpen={sidebarOpen}
