@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import * as React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { Login } from "./auth/pages";
+import { Dashboard } from "@/pages/dashboard/Dashboard";
+import { Index } from "@/pages/dashboard/Index";
+import { Profile } from "@/pages/dashboard/Profile";
+import Fees from "@/pages/dashboard/Fees";
+import ChangePassword from "@/pages/dashboard/ChangePassword";
+import OnBoarding from "@/pages/dashboard/OnBoarding";
+import IndexPage from "./IndexPage";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="relative w-full h-screen overflow-x-hidden bg-white text-black">
+      <Router>
+        <Routes>
+          <Route path="/" element={<IndexPage />} />
+          <Route>
+            <Route path="/auth/login" element={<Login />} />
+          </Route>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route index element={<Index />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="fees" element={<Fees />} />
+            <Route path="change-password" element={<ChangePassword />} />
+            <Route path="onboarding" element={<OnBoarding />} />
+          </Route>
+          <Route path="*" element={<p>Not found!</p>} />
+        </Routes>
+      </Router>
+    </div>
+  );
+};
 
-export default App
+export default App;
