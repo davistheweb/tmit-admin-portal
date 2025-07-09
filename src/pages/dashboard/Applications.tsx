@@ -1,6 +1,5 @@
 import React from "react";
-import { Menu, CheckCircle, XCircle } from "lucide-react";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { CheckCircle, XCircle } from "lucide-react";
 
 const dummyData = [
   {
@@ -24,17 +23,10 @@ const dummyData = [
 ];
 
 export const Applications: React.FC = () => {
-  const isMobile = useIsMobile();
-
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-800 p-4 text-gray-900 dark:text-gray-100">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        {isMobile && (
-          <button>
-            <Menu className="w-6 h-6" />
-          </button>
-        )}
+      <div className="mb-4">
         <h1 className="text-2xl font-bold">Admissions Applications</h1>
       </div>
 
