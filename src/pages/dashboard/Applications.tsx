@@ -85,11 +85,11 @@ export const Applications: React.FC = () => {
                   {student.status}
                 </td>
                 <td className="p-3 border-b dark:border-gray-700 flex flex-wrap gap-2">
-                  <button className="bg-green-100 text-green-800 px-3 py-1 rounded-md hover:bg-green-200 transition">
+                  <button className="bg-green-100 text-green-800 px-3 py-1 rounded-md hover:bg-green-200 transition cursor-pointer">
                     <CheckCircle className="w-4 h-4 inline-block mr-1" />
                     Approve
                   </button>
-                  <button className="bg-red-100 text-red-800 px-3 py-1 rounded-md hover:bg-red-200 transition">
+                  <button className="bg-red-100 text-red-800 px-3 py-1 rounded-md hover:bg-red-200 transition cursor-pointer">
                     <XCircle className="w-4 h-4 inline-block mr-1" />
                     Reject
                   </button>
