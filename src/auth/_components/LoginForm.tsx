@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { Toaster, toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,10 +11,14 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
+import { LoginAdmin } from "@/api/services/LoginAdmin";
+import { useAuth } from "@/hooks/useAuth";
 
 const LoginForm: React.FC = () => {
+
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -22,43 +26,48 @@ const LoginForm: React.FC = () => {
   } = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      regNum: "",
+      email: "",
       password: "",
     },
   });
 
-  async function SubmitLoginForm(data: LoginFormSchema) {
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        toast.success("Login successful, redirecting");
-        setTimeout(() => {
-          naviagte("/dashboard");
-          resolve(null);
-        }, 4000);
-      }, 2000),
-    );
-    console.log(data);
-  }
+  const onSubmit = async (data: LoginFormSchema) => {
+    const result = await LoginAdmin(data);
+
+    if (typeof result === "string") {
+      toast.error(result);
+    } else if (result && typeof result === "object") {
+
+      const { token, admin } = result as {
+        token: string;
+        admin: { name: string; email: string };
+      };
+
+      login(token, admin);
+      toast.success("Login successful");
+      navigate("/dashboard");
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit(SubmitLoginForm)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-8">
         <div>
-          <Label htmlFor="regNum" className="mb-4">
-            Username
+          <Label htmlFor="email" className="mb-4">
+            Email
           </Label>
           <Input
             className={`border ${
-              errors.regNum ? "border-red-300" : "border-gray-300"
+              errors.email ? "border-red-300" : "border-gray-300"
             } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="text"
-            {...register("regNum")}
-            placeholder="Enter username"
-            id="regNum"
+            {...register("email")}
+            placeholder="Enter email"
+            id="email"
           />
-          {errors.regNum && (
+          {errors.email && (
             <span className="text-red-600 text-xs select-none">
-              {errors.regNum.message}
+              {errors.email.message}
             </span>
           )}
         </div>
@@ -88,14 +97,14 @@ const LoginForm: React.FC = () => {
               {errors.password.message}
             </span>
           )}
-          <div className="flex justify-end mt-1 mb-2">
+          {/* <div className="flex justify-end mt-1 mb-2">
             <Link
               className="flex text-end text-green-400 font-light text-[12px] underline"
               to=""
             >
               Forgotten password?
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="w-full h-[0.3px] bg-gray-400 z-10" />
       </div>

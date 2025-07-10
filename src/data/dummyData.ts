@@ -1,10 +1,9 @@
 interface IDummyData {
-    regNum: string,
-    email: string,
-    name: string,
-    status: string
+  regNum: string;
+  email: string;
+  name: string;
+  status: string;
 }
-
 
 export const dummyData: IDummyData[] = [
   {

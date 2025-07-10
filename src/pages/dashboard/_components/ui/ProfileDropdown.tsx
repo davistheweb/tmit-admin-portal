@@ -1,5 +1,6 @@
+import { useAuth } from "@/hooks/useAuth";
 import React, { useRef, useEffect } from "react";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 interface ProfileDropdownProps {
   open: boolean;
@@ -8,6 +9,8 @@ interface ProfileDropdownProps {
 
 const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
   const profileRef = useRef<HTMLDivElement>(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -30,9 +33,9 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
       className="absolute right-0 mt-2 w-72 bg-white border rounded shadow-md z-30"
     >
       <div className="px-4 py-2 text-sm font-bold text-gray-700 border-b">
-        TMIT ADMINISTRATOR
+        {user?.name}
       </div>
-      <Link
+      {/* <Link
         to="profile"
         className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
       >
@@ -43,13 +46,16 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
         className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
       >
         Change Password
-      </Link>
-      <Link
-        to="/logout"
+      </Link> */}
+      <button
         className="block px-4 py-2 text-gray-700 hover:bg-gray-100 border-t"
+        onClick={() => {
+          localStorage.clear();
+          navigate("/login");
+        }}
       >
         Logout
-      </Link>
+      </button>
     </div>
   );
 };
