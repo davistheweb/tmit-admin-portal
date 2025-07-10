@@ -15,7 +15,6 @@ import { LoginAdmin } from "@/api/services/LoginAdmin";
 import { useAuth } from "@/hooks/useAuth";
 
 const LoginForm: React.FC = () => {
-
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -37,7 +36,6 @@ const LoginForm: React.FC = () => {
     if (typeof result === "string") {
       toast.error(result);
     } else if (result && typeof result === "object") {
-
       const { token, admin } = result as {
         token: string;
         admin: { name: string; email: string };

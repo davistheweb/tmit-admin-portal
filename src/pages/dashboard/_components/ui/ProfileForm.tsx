@@ -27,7 +27,6 @@ export default function ProfileForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-6 max-w-4xl mx-auto px-4 py-6"
     >
-      {/* Name Fields */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
           <label className="label">Surname</label>
@@ -59,7 +58,6 @@ export default function ProfileForm() {
         </div>
       </div>
 
-      {/* Gender and DOB */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="label">Gender</label>
@@ -89,8 +87,6 @@ export default function ProfileForm() {
           )}
         </div>
       </div>
-
-      {/* Location */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
           <label className="label">Country</label>
@@ -163,8 +159,6 @@ export default function ProfileForm() {
         />
         {errors.address && <p className="error">{errors.address.message}</p>}
       </div>
-
-      {/* Medical Info */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
           <label className="label">Blood Group</label>
@@ -226,7 +220,6 @@ export default function ProfileForm() {
         </div>
       </div>
 
-      {/* Submit */}
       <div className="text-center pt-4">
         <button
           type="submit"

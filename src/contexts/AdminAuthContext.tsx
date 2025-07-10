@@ -1,16 +1,10 @@
 // auth/auth-context.tsx
-import {
-  createContext,
-  useState,
-  useEffect,
-  type ReactNode,
-} from "react";
+import { createContext, useState, useEffect, type ReactNode } from "react";
 
 interface User {
   name: string;
   email: string;
 }
-
 export interface IAuthContext {
   user: User | null;
   login: (token: string, user: User) => void;
@@ -23,14 +17,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-
     const storedToken = localStorage.getItem("token");
     const storedUser = localStorage.getItem("admin");
 
     if (storedToken && storedUser) {
       try {
-        const parsedUser = JSON.parse(storedUser);;
-        
+        const parsedUser = JSON.parse(storedUser);
         setUser(parsedUser);
       } catch {
         setUser(null);
@@ -57,5 +49,4 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-
-export {AuthContext};
+export { AuthContext };
