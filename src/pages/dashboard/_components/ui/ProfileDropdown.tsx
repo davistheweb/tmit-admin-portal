@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { toast, Toaster } from "sonner";
+import { toast} from "sonner";
 import { logoutAdmin } from "@/api/services/LogoutAdmin";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -50,7 +50,6 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
       ref={profileRef}
       className="absolute right-0 mt-2 w-72 bg-white border rounded shadow-md z-30"
     >
-      <Toaster position="top-right" />
       <div className="px-4 py-2 text-sm font-bold text-gray-700 border-b">
         {user?.name}
       </div>

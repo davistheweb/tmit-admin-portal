@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CheckCircle, XCircle } from "lucide-react";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import {
   Table,
   TableBody,
@@ -72,7 +72,6 @@ export const Applications: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-800 p-4 text-gray-900 dark:text-gray-100">
-      <Toaster richColors position="top-left" />
       <div className="mb-4">
         <h1 className="text-2xl font-bold text-center">
           Admissions Applications
