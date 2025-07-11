@@ -37,10 +37,9 @@ export const Applications: React.FC = () => {
       const res = await approveStudent(studentId);
       toast.success(
         res.message + ",.... refetching students list" ||
-          "Student approved successfully",
+          "Student approved successfully"
       );
-
-      await refetch();
+      setTimeout(async () => await refetch(), 1500);
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message);
@@ -58,7 +57,7 @@ export const Applications: React.FC = () => {
       const res = await rejectStudent(studentId);
       toast.success(res.message + ",.... refetching students list");
 
-      await refetch();
+      setTimeout(async () => await refetch(), 1500);
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message);
@@ -78,7 +77,6 @@ export const Applications: React.FC = () => {
         </h1>
       </div>
 
-      
       {isLoading ? (
         <Spinner />
       ) : (
@@ -88,6 +86,7 @@ export const Applications: React.FC = () => {
               <TableRow>
                 <TableHead>S/N</TableHead>
                 <TableHead>Reg Number</TableHead>
+                <TableHead>Department</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead>Status</TableHead>
@@ -102,6 +101,13 @@ export const Applications: React.FC = () => {
                     className="text-center py-6 text-gray-500"
                   >
                     No student applications found.
+                    <br />
+                    <button
+                      className="mt-4 bg-green-500 p-2 rounded-sm text-white cursor-pointer "
+                      onClick={async () => await refetch()}
+                    >
+                      Recheck
+                    </button>
                   </TableCell>
                 </TableRow>
               ) : (
@@ -109,6 +115,7 @@ export const Applications: React.FC = () => {
                   <TableRow key={student.id}>
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>{student.reg_number}</TableCell>
+                    <TableCell>{student.department}</TableCell>
                     <TableCell>{student.email}</TableCell>
                     <TableCell>{student.name}</TableCell>
                     <TableCell className="capitalize text-yellow-600">

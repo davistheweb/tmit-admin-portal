@@ -6,7 +6,6 @@ import { Index } from "@/pages/dashboard/Index";
 import { Applications } from "@/pages/dashboard/Applications";
 import Fees from "@/pages/dashboard/Fees";
 import ChangePassword from "@/pages/dashboard/ChangePassword";
-import OnBoarding from "@/pages/dashboard/OnBoarding";
 import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoutes";
 
@@ -31,7 +30,6 @@ const App: React.FC = () => {
             <Route path="applications" element={<Applications />} />
             <Route path="fees" element={<Fees />} />
             <Route path="change-password" element={<ChangePassword />} />
-            <Route path="onboarding" element={<OnBoarding />} />
           </Route>
           <Route path="*" element={<p>Not found!</p>} />
         </Routes>

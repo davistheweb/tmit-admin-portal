@@ -30,7 +30,7 @@ const LoginForm: React.FC = () => {
     },
   });
 
-  const onSubmit = async (data: LoginFormSchema) => {
+  const SubmitLogin = async (data: LoginFormSchema) => {
     const result = await LoginAdmin(data);
 
     if (typeof result === "string") {
@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(SubmitLogin)}>
       <div className="flex flex-col gap-8">
         <div>
           <Label htmlFor="email" className="mb-4">
