@@ -23,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     {
       name: "Applications",
       icon: <UserPlus className="w-4 h-4" />,
-      href: "/dashboard/applications",
+      href: "/dashboard/select-department",
     },
     { name: "Fees", icon: <CreditCard className="w-4 h-4" />, href: "fees" },
     // { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/" },

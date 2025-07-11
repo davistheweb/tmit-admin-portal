@@ -1,4 +1,3 @@
-// auth/auth-context.tsx
 import { createContext, useState, useEffect, type ReactNode } from "react";
 
 interface User {

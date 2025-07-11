@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Login } from "./auth/pages";
 import { Dashboard } from "@/pages/dashboard/Dashboard";
 import { Index } from "@/pages/dashboard/Index";
-import { Applications } from "@/pages/dashboard/Applications";
+// import { Applications } from "@/pages/dashboard/Applications";
 import Fees from "@/pages/dashboard/Fees";
 import ChangePassword from "@/pages/dashboard/ChangePassword";
 import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoutes";
+import { DepartmentSelector } from "./pages/dashboard/DepartmentSelector";
+import { ApplicationsPage } from "./pages/dashboard/ApplicationsPage";
 
 const App: React.FC = () => {
   return (
@@ -27,7 +29,11 @@ const App: React.FC = () => {
             }
           >
             <Route index element={<Index />} />
-            <Route path="applications" element={<Applications />} />
+            <Route
+              path="/dashboard/select-department"
+              element={<DepartmentSelector />}
+            />
+            <Route path="applications" element={<ApplicationsPage />} />
             <Route path="fees" element={<Fees />} />
             <Route path="change-password" element={<ChangePassword />} />
           </Route>
