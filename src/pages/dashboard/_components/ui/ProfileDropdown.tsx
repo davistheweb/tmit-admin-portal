@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { toast} from "sonner";
+import { toast } from "sonner";
 import { logoutAdmin } from "@/api/services/LogoutAdmin";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -34,7 +34,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
       const message = await logoutAdmin();
       toast.success(message || "Logged out");
       localStorage.clear();
-      toast.success("Logout Successful")
+      toast.success("Logout Successful");
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       if (err instanceof Error) {

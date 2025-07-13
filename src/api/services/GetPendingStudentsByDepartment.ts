@@ -3,7 +3,7 @@ import api from "../api";
 import type { IPendingStudent } from "@/types/IPendingStudent";
 
 export const GetPendingStudentsByDepartment = async (
-  department: string
+  department: string,
 ): Promise<IPendingStudent[] | string> => {
   try {
     const response = await api.post<{

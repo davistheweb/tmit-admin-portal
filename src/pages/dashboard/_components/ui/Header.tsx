@@ -19,7 +19,6 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b bg-white shadow-sm relative">
       <div className="flex items-center gap-2 sm:gap-4">
-     
         <button
           onClick={toggleSidebar}
           className="text-gray-700 cursor-pointer p-1 sm:p-2"
@@ -31,7 +30,6 @@ const Header: React.FC<HeaderProps> = ({
           )}
         </button>
 
-      
         <div className="flex items-center gap-2 max-w-[150px] sm:max-w-none">
           <img
             src={schoolLogo}
@@ -43,7 +41,6 @@ const Header: React.FC<HeaderProps> = ({
           </span>
         </div>
 
-     
         <div className="hidden md:block h-6 w-px bg-gray-300" />
 
         <h1 className="text-sm sm:text-base font-semibold hidden md:block">
@@ -51,14 +48,11 @@ const Header: React.FC<HeaderProps> = ({
         </h1>
       </div>
 
-
       <div className="flex items-center gap-3 sm:gap-4">
-
         <button className="relative text-gray-700 hover:text-gray-900 cursor-pointer p-1 sm:p-2">
           <Bell className="w-5 h-5 sm:w-6 sm:h-6" />
           <span className="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500" />
         </button>
-
 
         <div className="relative">
           <button

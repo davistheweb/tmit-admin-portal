@@ -16,7 +16,7 @@ const schema = z
       !!faculties
         .find((f) => f.abbreviation === v.faculty)
         ?.departments.find((d) => d.abbreviation === v.department),
-    { path: ["department"], message: "invalid department for that faculty" }
+    { path: ["department"], message: "invalid department for that faculty" },
   );
 
 type FormValues = z.infer<typeof schema>;

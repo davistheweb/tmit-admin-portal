@@ -2,7 +2,6 @@ import axios from "axios";
 import api from "../api";
 import { type LoginFormSchema } from "@/auth/_components/LoginForm";
 
-
 export const LoginAdmin = async (data: LoginFormSchema): Promise<unknown> => {
   const { email, password } = data;
   try {

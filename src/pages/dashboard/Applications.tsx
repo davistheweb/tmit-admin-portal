@@ -37,7 +37,7 @@ export const Applications: React.FC = () => {
       const res = await approveStudent(studentId);
       toast.success(
         res.message + ",.... refetching students list" ||
-          "Student approved successfully"
+          "Student approved successfully",
       );
       setTimeout(async () => await refetch(), 1500);
     } catch (err) {

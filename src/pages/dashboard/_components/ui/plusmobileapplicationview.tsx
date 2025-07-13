@@ -231,12 +231,12 @@ export const ApplicationsPage: React.FC = () => {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900/30 dark:text-green-300 dark:hover:bg-green-900/50 cursor-pointer"
+                                className="bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900/30 dark:text-green-300 dark:hover:bg-green-900/50"
                                 disabled={approvingId === student.id}
                                 onClick={() => handleApproveStudent(student.id)}
                               >
                                 {approvingId === student.id ? (
-                                  <div className="h-4 w-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin mr-1 " />
+                                  <div className="h-4 w-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin mr-1" />
                                 ) : (
                                   <CheckCircle className="w-4 h-4 mr-1" />
                                 )}
@@ -245,7 +245,7 @@ export const ApplicationsPage: React.FC = () => {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="bg-red-50 text-red-700 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50 cursor-pointer"
+                                className="bg-red-50 text-red-700 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50"
                                 disabled={rejectingId === student.id}
                                 onClick={() => handleRejectStudent(student.id)}
                               >
