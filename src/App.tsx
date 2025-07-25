@@ -10,6 +10,7 @@ import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoutes";
 import { DepartmentSelector } from "./pages/dashboard/DepartmentSelector";
 import { ApplicationsPage } from "./pages/dashboard/ApplicationsPage";
+import { Setup } from "@/pages/dashboard/Setup";
 
 const App: React.FC = () => {
   return (
@@ -35,6 +36,7 @@ const App: React.FC = () => {
             />
             <Route path="applications" element={<ApplicationsPage />} />
             <Route path="fees" element={<Fees />} />
+            <Route path="setup" element={<Setup />} />
             <Route path="change-password" element={<ChangePassword />} />
           </Route>
           <Route path="*" element={<p>Not found!</p>} />

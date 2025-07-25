@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { CheckCircle, XCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ export const ApplicationsPage: React.FC = () => {
     usePendingStudentsByDepartment();
   const [approvingId, setApprovingId] = useState<number | null>(null);
   const [rejectingId, setRejectingId] = useState<number | null>(null);
-
+  const navigate = useNavigate();
   // Look up the full department name (normalize to lowercase codes)
   const deptFullName =
     faculties
@@ -140,12 +141,20 @@ export const ApplicationsPage: React.FC = () => {
             <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base mb-4">
               No Applications Found For {deptFullName.toUpperCase()}.
             </p>
-            <Button
-              onClick={refetch}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm sm:text-base"
-            >
-              Recheck
-            </Button>
+            <div className="space-x-5">
+              <Button
+                onClick={refetch}
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm sm:text-base cursor-pointer"
+              >
+                Recheck
+              </Button>
+              <Button
+                onClick={() => navigate(-1)}
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm sm:text-base cursor-pointer"
+              >
+                Go back
+              </Button>
+            </div>
           </div>
         ) : (
           <>

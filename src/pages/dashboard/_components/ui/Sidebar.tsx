@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
-import { Home, CreditCard, ChevronLeft, UserPlus } from "lucide-react";
+import {
+  Home,
+  CreditCard,
+  ChevronLeft,
+  UserPlus,
+  Building2,
+} from "lucide-react";
 import { schoolLogo } from "@/assets";
 
 interface SidebarProps {
@@ -24,6 +30,11 @@ const Sidebar: React.FC<SidebarProps> = ({
       name: "Applications",
       icon: <UserPlus className="w-4 h-4" />,
       href: "/dashboard/select-department",
+    },
+    {
+      name: "Setup",
+      icon: <Building2 size={18} />,
+      href: "/dashboard/setup",
     },
     { name: "Fees", icon: <CreditCard className="w-4 h-4" />, href: "fees" },
     // { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/" },
