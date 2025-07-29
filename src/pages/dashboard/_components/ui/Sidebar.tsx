@@ -32,11 +32,15 @@ const Sidebar: React.FC<SidebarProps> = ({
       href: "/dashboard/select-department",
     },
     {
-      name: "Setup",
+      name: "Academics",
       icon: <Building2 size={18} />,
-      href: "/dashboard/setup",
+      href: "/dashboard/academics",
     },
-    { name: "Fees", icon: <CreditCard className="w-4 h-4" />, href: "fees" },
+    {
+      name: "Fees",
+      icon: <CreditCard className="w-4 h-4" />,
+      href: "/dashboard/fees",
+    },
     // { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/" },
   ];
 

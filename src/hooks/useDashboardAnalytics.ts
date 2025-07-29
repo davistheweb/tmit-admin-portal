@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   getDashboardAnalytics,
- type DashboardResponse,
+  type DashboardResponse,
 } from "@/api/services/getDashboardAnalytics";
 
 export const useDashboardAnalytics = () => {
