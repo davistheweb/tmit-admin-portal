@@ -96,7 +96,7 @@ export const FacultyForm: React.FC<{
                 </p>
               )}
               <label className="block mb-2 font-medium text-gray-800 uppercase text-sm">
-                Faculty Code 
+                Faculty Code
               </label>
               <input
                 {...register("abbrev")}

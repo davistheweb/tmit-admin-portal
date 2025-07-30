@@ -9,12 +9,12 @@ interface CreateFacultyResponse {
 
 export const CreateFaculty = async (
   name: string,
-  abbrev : string
+  abbrev: string,
 ): Promise<CreateFacultyResponse | string> => {
   try {
     const response = await api.post<CreateFacultyResponse>(
       "/api/admin/faculties",
-      { name, abbrev }
+      { name, abbrev },
     );
     return response.data;
   } catch (err: unknown) {

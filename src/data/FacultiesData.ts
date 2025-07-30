@@ -19,6 +19,11 @@ export const faculties = [
     ],
   },
   {
+    name: "School Of nursing",
+    abbreviation: "SN",
+    departments: [{ name: "General Nursing Science", abbreviation: "GNS" }],
+  },
+  {
     name: "School of Engineering Technology",
     abbreviation: "SET",
     departments: [

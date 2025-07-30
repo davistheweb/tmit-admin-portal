@@ -74,7 +74,7 @@ export const DepartmentForm: React.FC<{
                 variant="ghost"
                 className="p-1 text-gray-500 hover:text-gray-700 transition-colors duration-200"
                 onClick={() => {
-                  console.log("DepartmentForm: Close button clicked")
+                  console.log("DepartmentForm: Close button clicked");
                   setOpen(false);
                 }}
               >
