@@ -81,7 +81,7 @@ export const FacultyForm: React.FC<{
             </DialogClose>
           </div>
           <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
-            <div>
+            <div className="space-y-4">
               <label className="block mb-2 font-medium text-gray-800 uppercase text-sm">
                 Faculty Name
               </label>
@@ -93,6 +93,19 @@ export const FacultyForm: React.FC<{
               {errors.name && (
                 <p className="mt-1 text-sm text-red-600 uppercase">
                   {errors.name.message}
+                </p>
+              )}
+              <label className="block mb-2 font-medium text-gray-800 uppercase text-sm">
+                Faculty Code 
+              </label>
+              <input
+                {...register("abbrev")}
+                className="w-full px-4 py-3 border-2 border-green-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200 transition-colors duration-200"
+                placeholder="Enter Faculty code eg: (SMFS)"
+              />
+              {errors.abbrev && (
+                <p className="mt-1 text-sm text-red-600 uppercase">
+                  {errors.abbrev.message}
                 </p>
               )}
             </div>

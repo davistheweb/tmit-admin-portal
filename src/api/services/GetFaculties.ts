@@ -4,7 +4,7 @@ import type { IFaculty } from "@/types/IFaculty";
 
 export const GetFaculties = async (): Promise<IFaculty[] | string> => {
   try {
-    const response = await api.get<IFaculty[]>("/api/admin/faculties");
+    const response = await api.get<IFaculty[]>("/api/faculties");
     console.log("GetFaculties raw response:", response.data);
     return response.data || [];
   } catch (err: unknown) {

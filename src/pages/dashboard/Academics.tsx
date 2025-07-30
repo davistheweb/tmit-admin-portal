@@ -16,7 +16,7 @@ const Spinner = () => (
 const FacultyCard = ({
   faculty,
 }: {
-  faculty: { id: number; name: string; departments: any[] };
+  faculty: { id: number; name: string; abbrev: string; departments: any[] };
 }) => (
   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
     <div className="flex justify-between items-start mb-3">
@@ -40,8 +40,11 @@ const FacultyCard = ({
 export const Academics: React.FC = () => {
   const { faculties, isLoading, error, refetch } = useFaculties();
 
-  const handleCreateFaculty = async (data: { name: string }) => {
-    const result = await CreateFaculty(data.name);
+  const handleCreateFaculty = async (data: {
+    name: string;
+    abbrev: string;
+  }) => {
+    const result = await CreateFaculty(data.name, data.abbrev);
     if (typeof result === "string") {
       toast.error(result);
     } else {
@@ -117,6 +120,9 @@ export const Academics: React.FC = () => {
                         Faculty
                       </th>
                       <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Code
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Departments
                       </th>
                       <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -129,6 +135,9 @@ export const Academics: React.FC = () => {
                       <tr key={faculty.id} className="hover:bg-gray-50">
                         <td className="px-4 py-4 text-sm text-gray-900">
                           {faculty.name}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-gray-900">
+                          {faculty.abbrev}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-900">
                           {faculty.departments.length}
