@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router";
 import { schoolLogo } from "@/assets";
 import { useFaculties } from "@/hooks/useFaculties";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 
 const SelectionsLoader: React.FC = () => (
   <div className="flex justify-center items-center py-20">
@@ -32,7 +31,7 @@ export const DepartmentSelector: React.FC = () => {
         !!faculties
           .find((f) => f.abbrev === v.faculty)
           ?.departments.find((d) => d.code === v.department),
-      { path: ["department"], message: "invalid department for that faculty" },
+      { path: ["department"], message: "invalid department for that faculty" }
     );
 
   type FormValues = z.infer<typeof schema>;
@@ -93,13 +92,12 @@ export const DepartmentSelector: React.FC = () => {
       ) : !faculties.length ? (
         <div className="text-center py-8 px-4">
           <p className="text-gray-500 text-sm sm:text-base mb-4">
-            No faculties found. Create one to get started.
+            No faculties or department found
           </p>
           <Link
-            to="academics"
+            to="/dashboard/academics"
             className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm cursor-pointer transition-colors duration-200"
           >
-            <Plus className="w-4 h-4 mr-1" />
             Create Faculty
           </Link>
         </div>
