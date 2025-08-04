@@ -31,7 +31,7 @@ export const DepartmentSelector: React.FC = () => {
         !!faculties
           .find((f) => f.abbrev === v.faculty)
           ?.departments.find((d) => d.code === v.department),
-      { path: ["department"], message: "invalid department for that faculty" }
+      { path: ["department"], message: "invalid department for that faculty" },
     );
 
   type FormValues = z.infer<typeof schema>;
