@@ -128,7 +128,7 @@ const LoginBody: React.FC = () => {
       subtitle="Please login to portal"
     >
       <LoginForm />
-      <Toaster richColors position="top-left" />
+      <Toaster richColors position="top-left" expand />
     </AuthFormLayout>
   );
 };
