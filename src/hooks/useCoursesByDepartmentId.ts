@@ -18,7 +18,7 @@ export const useCoursesByDepartmentId = (departmentId: string | null) => {
       .get("/api/admin/courses", { params: { department_id: departmentId } })
       .then((response) => setCourses(response.data))
       .catch((err) =>
-        setError(err.response?.data?.message || "Failed to fetch courses.")
+        setError(err.response?.data?.message || "Failed to fetch courses."),
       )
       .finally(() => setIsLoading(false));
   }, [departmentId]);

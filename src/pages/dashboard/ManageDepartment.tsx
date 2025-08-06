@@ -17,7 +17,7 @@ const Spinner = () => (
 export const ManageDepartment: React.FC = () => {
   const location = useLocation();
   const departmentId = new URLSearchParams(location.search).get(
-    "department_id"
+    "department_id",
   );
   const navigate = useNavigate();
   const { courses, isLoading, error, refetch } =
@@ -29,7 +29,6 @@ export const ManageDepartment: React.FC = () => {
     faculties
       .flatMap((faculty) => faculty.departments)
       .find((dept) => dept.id === dept_id)?.name;
-
 
   const handleCreateCourse = async (data: {
     code: string;
@@ -57,7 +56,8 @@ export const ManageDepartment: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4 sm:mb-6">
           <h1 className="text-base sm:text-lg lg:text-xl font-bold truncate">
-            Manage Department: {getDepartmentNameByID(Number(departmentId)) || "Loding...."}
+            Manage Department:{" "}
+            {getDepartmentNameByID(Number(departmentId)) || "Loding...."}
           </h1>
           <div className="flex flex-col sm:flex-row gap-2">
             <Button

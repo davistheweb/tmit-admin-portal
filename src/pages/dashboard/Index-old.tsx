@@ -1,9 +1,9 @@
 // import React from "react";
-// import { 
-//   CheckSquare, 
-//   Users, 
-//   CircleEllipsis, 
-//   School, 
+// import {
+//   CheckSquare,
+//   Users,
+//   CircleEllipsis,
+//   School,
 //   UserCheck,
 //   Building2,
 //   TrendingUp,
@@ -13,10 +13,9 @@
 //   BarChart3
 // } from "lucide-react";
 
-
 // const useDashboardAnalytics = () => {
 //   const [loading, setLoading] = React.useState(true);
-  
+
 //   React.useEffect(() => {
 //     const timer = setTimeout(() => setLoading(false), 1500);
 //     return () => clearTimeout(timer);
@@ -78,7 +77,7 @@
 //     <div className="flex flex-col items-center space-y-4">
 //       <div className="relative">
 //         <div className="h-12 w-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
-//         <div className="absolute inset-0 h-12 w-12 border-4 border-transparent border-b-purple-600 rounded-full animate-spin animate-reverse" 
+//         <div className="absolute inset-0 h-12 w-12 border-4 border-transparent border-b-purple-600 rounded-full animate-spin animate-reverse"
 //              style={{ animationDuration: '0.8s' }} />
 //       </div>
 //       <div className="text-center">
@@ -93,10 +92,10 @@
 //   </div>
 // );
 
-// const EmptyState: React.FC<{ title: string; description: string; icon: React.ReactNode }> = ({ 
-//   title, 
-//   description, 
-//   icon 
+// const EmptyState: React.FC<{ title: string; description: string; icon: React.ReactNode }> = ({
+//   title,
+//   description,
+//   icon
 // }) => (
 //   <div className="flex flex-col items-center justify-center py-12 px-6 text-center">
 //     <div className="mb-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-full">
@@ -113,7 +112,7 @@
 
 // export const Index: React.FC = () => {
 //   const { data, loading, error } = useDashboardAnalytics();
-  
+
 //   const totals = data?.totals;
 //   const studentsPerDepartment = data?.students_per_department || [];
 //   const recentStudents = data?.recent_students || [];
@@ -141,7 +140,7 @@
 //   return (
 //     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4 sm:p-6 lg:p-8">
 //       <div className="max-w-7xl mx-auto space-y-8">
-        
+
 //         {/* Header */}
 //         <div className="text-center mb-8">
 //           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-2">
@@ -212,7 +211,7 @@
 
 //         {/* Secondary Content Grid */}
 //         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          
+
 //           {/* Students per Department */}
 //           <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-xl">
 //             <div className="p-6 border-b border-gray-200 dark:border-gray-700">
@@ -259,7 +258,7 @@
 //                           {dept.students_count}
 //                         </div>
 //                         <div className="w-12 h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
-//                           <div 
+//                           <div
 //                             className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500"
 //                             style={{ width: `${Math.max((dept.students_count / Math.max(...studentsPerDepartment.map(d => d.students_count), 1)) * 100, 5)}%` }}
 //                           />
@@ -316,7 +315,7 @@
 //                             {student.name}
 //                           </p>
 //                           <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-//                             student.status === 'active' 
+//                             student.status === 'active'
 //                               ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
 //                               : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
 //                           }`}>
@@ -382,9 +381,9 @@
 //             </div>
 //           </div>
 //           <div className={`flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full ${
-//             isPositive 
-//               ? 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20' 
-//               : isNegative 
+//             isPositive
+//               ? 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20'
+//               : isNegative
 //                 ? 'text-red-600 bg-red-50 dark:bg-red-900/20'
 //                 : 'text-gray-500 bg-gray-50 dark:bg-gray-700'
 //           }`}>

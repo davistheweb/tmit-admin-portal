@@ -185,12 +185,12 @@ export const Index: React.FC = () => {
                                 (dept.students_count /
                                   Math.max(
                                     ...studentsPerDepartment.map(
-                                      (d) => d.students_count
+                                      (d) => d.students_count,
                                     ),
-                                    1
+                                    1,
                                   )) *
                                   100,
-                                5
+                                5,
                               )}%`,
                             }}
                           />

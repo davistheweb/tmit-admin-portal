@@ -19,7 +19,7 @@ export const CreateCourse = async (data: {
   try {
     const response = await api.post<CreateCourseResponse>(
       "/api/admin/courses",
-      data
+      data,
     );
     return response.data;
   } catch (err: unknown) {

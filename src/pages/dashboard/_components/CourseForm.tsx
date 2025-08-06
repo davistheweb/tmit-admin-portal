@@ -10,9 +10,10 @@ import {
 } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { courseFormSchema, type CourseFormSchema } from "@/lib/validators/courseFormSchema";
-
-
+import {
+  courseFormSchema,
+  type CourseFormSchema,
+} from "@/lib/validators/courseFormSchema";
 
 interface CourseFormProps {
   onSubmit: (data: CourseFormSchema) => void;
@@ -187,7 +188,7 @@ export const CourseForm: React.FC<CourseFormProps> = ({ onSubmit }) => {
                       <option key={level} value={level}>
                         {level}
                       </option>
-                    )
+                    ),
                   )}
                 </select>
                 {errors.level && (
