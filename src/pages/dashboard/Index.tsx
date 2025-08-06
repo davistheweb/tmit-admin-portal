@@ -82,7 +82,7 @@ export const Index: React.FC = () => {
             Dashboard Analytics
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
-            Real-time insights into your institutional data
+            Latest Updates on TMIT
           </p>
         </div>
 

@@ -71,6 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             key={link.name}
             to={link.href}
             className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded"
+            onClick={() => isMobile && closeSidebar()}
           >
             {link.icon}
             <span className="ml-3">{link.name}</span>
