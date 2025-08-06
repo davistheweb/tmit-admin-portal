@@ -1,10 +1,11 @@
-import * as React from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Login } from "./auth/pages";
 import { Dashboard } from "@/pages/dashboard/Dashboard";
 import { Index } from "@/pages/dashboard/Index";
 import { Academics } from "@/pages/dashboard/Academics";
 import { ManageFaculty } from "@/pages/dashboard/ManageFaculty";
+import { ManageDepartment } from "@/pages/dashboard/ManageDepartment";
 import Fees from "@/pages/dashboard/Fees";
 import ChangePassword from "@/pages/dashboard/ChangePassword";
 import IndexPage from "./IndexPage";
@@ -18,9 +19,7 @@ const App: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/" element={<IndexPage />} />
-          <Route>
-            <Route path="/login" element={<Login />} />
-          </Route>
+          <Route path="/login" element={<Login />} />
           <Route
             path="/dashboard"
             element={
@@ -34,6 +33,10 @@ const App: React.FC = () => {
             <Route
               path="academics/manage-faculty"
               element={<ManageFaculty />}
+            />
+            <Route
+              path="academics/manage-department"
+              element={<ManageDepartment />}
             />
             <Route path="select-department" element={<DepartmentSelector />} />
             <Route path="applications" element={<ApplicationsPage />} />

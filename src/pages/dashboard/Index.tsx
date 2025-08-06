@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { useDashboardAnalytics } from "@/hooks/useDashboardAnalytics";
 
-
 const DashboardLoader: React.FC = () => (
   <div className="flex justify-center items-center py-20">
     <div className="flex flex-col items-center space-y-4">
@@ -54,7 +53,6 @@ export const Index: React.FC = () => {
   const totals = data?.totals;
   const studentsPerDepartment = data?.students_per_department || [];
   const recentStudents = data?.recent_students || [];
-
   if (loading) {
     return <DashboardLoader />;
   }
