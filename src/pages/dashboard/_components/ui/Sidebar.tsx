@@ -6,6 +6,7 @@ import {
   ChevronLeft,
   UserPlus,
   Building2,
+  Plus,
 } from "lucide-react";
 import { schoolLogo } from "@/assets";
 
@@ -35,6 +36,11 @@ const Sidebar: React.FC<SidebarProps> = ({
       name: "Academics",
       icon: <Building2 size={18} />,
       href: "/dashboard/academics",
+    },
+    {
+      name: "Add Results",
+      icon: <Plus className="w-4 h-4" />,
+      href: "/dashboard/add-results",
     },
     {
       name: "Fees",
