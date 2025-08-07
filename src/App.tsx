@@ -1,17 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Login } from "./auth/pages";
-import { Dashboard } from "@/pages/dashboard/Dashboard";
-import { Index } from "@/pages/dashboard/Index";
-import { Academics } from "@/pages/dashboard/Academics";
-import { ManageFaculty } from "@/pages/dashboard/ManageFaculty";
-import { ManageDepartment } from "@/pages/dashboard/ManageDepartment";
-import Fees from "@/pages/dashboard/Fees";
-import ChangePassword from "@/pages/dashboard/ChangePassword";
 import IndexPage from "./IndexPage";
-import { ProtectedRoute } from "./routes/ProtectedRoutes";
-import { DepartmentSelector } from "./pages/dashboard/DepartmentSelector";
-import { ApplicationsPage } from "./pages/dashboard/ApplicationsPage";
+import {
+  Academics,
+  AddResults,
+  ApplicationsPage,
+  ChangePassword,
+  Dashboard,
+  DashboardIndex,
+  DepartmentSelector,
+  Fees,
+  ManageDepartment,
+  ManageFaculty,
+} from "@/pages/dashboard";
+import { ProtectedRoute } from "@/routes/ProtectedRoutes";
 
 const App: React.FC = () => {
   return (
@@ -28,7 +31,7 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           >
-            <Route index element={<Index />} />
+            <Route index element={<DashboardIndex />} />
             <Route path="academics" element={<Academics />} />
             <Route
               path="academics/manage-faculty"
@@ -40,6 +43,7 @@ const App: React.FC = () => {
             />
             <Route path="select-department" element={<DepartmentSelector />} />
             <Route path="applications" element={<ApplicationsPage />} />
+            <Route path="add-results" element={<AddResults />} />
             <Route path="fees" element={<Fees />} />
             <Route path="change-password" element={<ChangePassword />} />
           </Route>
