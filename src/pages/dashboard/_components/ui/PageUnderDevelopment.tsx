@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router";
 import { schoolLogo } from "@/assets";
 
-export const PageUnderdevelopment: React.FC<{ pageName?: string }> = ({pageName}) => {
+export const PageUnderdevelopment: React.FC<{ pageName?: string }> = ({
+  pageName,
+}) => {
   return (
     <div className="h-full w-full flex flex-col justify-center items-center space-y-1">
       <div className="flex flex-col justify-center items-center h-full gap-5">
