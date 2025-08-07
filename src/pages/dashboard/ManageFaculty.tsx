@@ -167,7 +167,7 @@ export const ManageFaculty: React.FC = () => {
                 </p>
               </div>
 
-              <div className="space-y-3 sm:space-y-4">
+              <div className="flex flex-col gap-4">
                 {faculty.departments.map((department) => (
                   <DepartmentCard key={department.id} department={department} />
                 ))}
