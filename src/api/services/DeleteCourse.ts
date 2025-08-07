@@ -1,14 +1,6 @@
 import axios from "axios";
 import api from "../api";
-
-interface SuccessResponse {
-  message: string;
-}
-
-interface ErrorResponse {
-  message: string;
-  errors?: Record<string, string[]>;
-}
+import type { ErrorResponse, SuccessResponse } from "@/types/IResponse";
 
 export const DeleteCourse = async (
   courseId: number

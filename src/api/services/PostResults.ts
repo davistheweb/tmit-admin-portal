@@ -1,24 +1,12 @@
 import axios from "axios";
 import api from "../api";
+import type { ErrorResponse, SuccessResponse } from "@/types/IResponse";
+import type { IResultsForm } from "@/types/IResultsForm";
 
-export interface ResultsForm {
-  reg_number: string;
-  session: string;
-  semester: string;
-  results: { course_code: string; score: number }[];
-}
 
-interface SuccessResponse {
-  message: string;
-}
-
-interface ErrorResponse {
-  message: string;
-  errors: Record<string, string[]>;
-}
 
 export const PostResults = async (
-  data: ResultsForm,
+  data: IResultsForm,
 ): Promise<SuccessResponse | ErrorResponse> => {
   try {
     const response = await api.post<SuccessResponse>(
