@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+
+ // this code Generates session options (current year to next 5 years, which will be extensible)
+ // I used this so that in the next 5 years, it will be updated
 export const useSessionOptions = (setSessionValue: CallableFunction) => {
   const currentYear = new Date().getFullYear();
   const initialSessions = Array.from({ length: 6 }, (_, i) => {
