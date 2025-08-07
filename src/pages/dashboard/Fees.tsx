@@ -1,3 +1,9 @@
+import { PageUnderdevelopment } from "./_components/ui/PageUnderDevelopment";
+
 export default function Fees() {
-  return <div>Fees page is under construction</div>;
+  return (
+    <div>
+      <PageUnderdevelopment />
+    </div>
+  );
 }
