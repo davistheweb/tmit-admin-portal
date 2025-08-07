@@ -62,7 +62,7 @@ export const ManageFaculty: React.FC = () => {
   return (
     <div className="min-h-screen bg-white p-2 sm:p-4 md:p-6 text-gray-900">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section - Fully Responsive */}
+        {/* Header Section*/}
         <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:justify-between sm:items-start md:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="flex-1 min-w-0">
             <h1 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
@@ -75,7 +75,7 @@ export const ManageFaculty: React.FC = () => {
             </h1>
           </div>
 
-          {/* Action Buttons - Super Responsive */}
+          {/* Action Buttons*/}
           <div className="flex flex-row gap-2 w-full sm:w-auto sm:flex-shrink-0">
             {faculty && faculty.departments.length > 0 && (
               <Button
