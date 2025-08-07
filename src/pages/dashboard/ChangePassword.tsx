@@ -1,7 +1,9 @@
-export default function ChangePassword() {
+import React from "react";
+
+export const ChangePassword: React.FC = () => {
   return (
-    <div className="flex justify-center">
-      <h1>Change password</h1>
+    <div>
+      ChangePassword
     </div>
   );
-}
+};
