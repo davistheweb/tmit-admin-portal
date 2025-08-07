@@ -14,6 +14,7 @@ import {
   courseFormSchema,
   type CourseFormSchema,
 } from "@/lib/validators/courseFormSchema";
+import { useSessionOptions } from "@/hooks/useSessionOptions";
 
 interface CourseFormProps {
   onSubmit: (data: CourseFormSchema) => void;
@@ -40,25 +41,7 @@ export const CourseForm: React.FC<CourseFormProps> = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Generate session options (current year to next 5 years, which will be extensible)
-  const currentYear = new Date().getFullYear();
-  const [sessionOptions, setSessionOptions] = useState<
-    { label: string; value: string }[]
-  >([
-    { label: "2019/2020", value: "19" },
-    { label: "2020/2021", value: "20" },
-    { label: "2021/2022", value: "21" },
-    { label: "2022/2023", value: "22" },
-    { label: "2023/2024", value: "23" },
-    { label: "2024/2025", value: "24" },
-    ...Array.from({ length: 5 }, (_, i) => {
-      const year = currentYear + i;
-      return {
-        label: `${year}/${year + 1}`,
-        value: year.toString().slice(-2),
-      };
-    }),
-  ]);
+  const { sessionOptions, handleSessionChange } = useSessionOptions(setValue);
 
   const onFormSubmit = async (data: CourseFormSchema) => {
     await onSubmit(data);
@@ -84,25 +67,6 @@ export const CourseForm: React.FC<CourseFormProps> = ({ onSubmit }) => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [open]);
-
-  // Update session options when nearing the end
-  const handleSessionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = e.target.value;
-    const selectedYear = parseInt(`20${selectedValue}`);
-    if (selectedYear >= currentYear + 4) {
-      setSessionOptions((prev) => [
-        ...prev,
-        ...Array.from({ length: 5 }, (_, i) => {
-          const year = selectedYear + 1 + i;
-          return {
-            label: `${year}/${year + 1}`,
-            value: year.toString().slice(-2),
-          };
-        }),
-      ]);
-    }
-    setValue("session", selectedValue);
-  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
