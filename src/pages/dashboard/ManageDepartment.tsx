@@ -48,7 +48,7 @@ export const ManageDepartment: React.FC = () => {
     if (!departmentId) return;
     const result = await CreateCourse({
       ...data,
-      department_id: parseInt(departmentId),
+      department_ids: [parseInt(departmentId)],
     });
     if (typeof result === "string") {
       toast.error(result);

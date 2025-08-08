@@ -206,14 +206,14 @@ export const CourseForm: React.FC<CourseFormProps> = ({ onSubmit }) => {
               <Button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+                className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200 cursor-pointer"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200 cursor-pointer"
               >
                 {isSubmitting ? "Creating…" : "Add Course"}
               </Button>

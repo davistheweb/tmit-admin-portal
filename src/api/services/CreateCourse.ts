@@ -13,7 +13,7 @@ export const CreateCourse = async (data: {
   unit: number;
   level: number;
   semester: string;
-  department_id: number;
+  department_ids: number[];
   session: string;
 }): Promise<CreateCourseResponse | string> => {
   try {
