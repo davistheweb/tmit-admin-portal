@@ -6,4 +6,4 @@ interface ErrorResponse {
   message: string;
   errors: Record<string, string[]>;
 }
-export type{ SuccessResponse, ErrorResponse };
+export type { SuccessResponse, ErrorResponse };

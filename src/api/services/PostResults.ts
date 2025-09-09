@@ -3,8 +3,6 @@ import api from "../api";
 import type { ErrorResponse, SuccessResponse } from "@/types/IResponse";
 import type { IResultsForm } from "@/types/IResultsForm";
 
-
-
 export const PostResults = async (
   data: IResultsForm,
 ): Promise<SuccessResponse | ErrorResponse> => {

@@ -28,7 +28,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
       )}
       <div
         className="flex-1 flex flex-col transition-all duration-200 ease-in-out"
-        style={{ marginLeft: sidebarOpen && !isMobile ? "16rem" : "0" }}
+        style={{ marginLeft: sidebarOpen && !isMobile ? "14rem" : "0" }}
       >
         <Header
           sidebarOpen={sidebarOpen}

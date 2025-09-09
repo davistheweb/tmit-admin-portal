@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Login } from "./auth/pages";
 import IndexPage from "./IndexPage";
@@ -13,10 +12,14 @@ import {
   Fees,
   ManageDepartment,
   ManageFaculty,
+  ViewStaffs,
+  ViewStaffDetails,
+  RolesAndPermissions,
+  AccessControl,
 } from "@/pages/dashboard";
 import { ProtectedRoute } from "@/routes/ProtectedRoutes";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <div className="relative w-full h-screen overflow-x-hidden bg-white text-black">
       <Router>
@@ -45,6 +48,13 @@ const App: React.FC = () => {
             <Route path="applications" element={<ApplicationsPage />} />
             <Route path="add-results" element={<AddResults />} />
             <Route path="fees" element={<Fees />} />
+            <Route path="staffs" element={<ViewStaffs />} />
+            <Route path="staffs/:staffId" element={<ViewStaffDetails />} />
+            <Route
+              path="roles-and-permissions"
+              element={<RolesAndPermissions />}
+            />
+            <Route path="access-control" element={<AccessControl />} />
             <Route path="change-password" element={<ChangePassword />} />
           </Route>
           <Route path="*" element={<p>Not found!</p>} />

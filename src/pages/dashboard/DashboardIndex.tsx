@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useDashboardAnalytics } from "@/hooks/useDashboardAnalytics";
 
-const DashboardLoader: React.FC = () => (
+const DashboardLoader = () => (
   <div className="flex justify-center items-center py-20">
     <div className="flex flex-col items-center space-y-4">
       <div className="h-12 w-12 border-4 border-gray-200 border-t-green-500 rounded-full animate-spin" />

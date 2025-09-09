@@ -19,7 +19,7 @@ const Spinner = () => (
 export const ManageDepartment: React.FC = () => {
   const location = useLocation();
   const departmentId = new URLSearchParams(location.search).get(
-    "department_id"
+    "department_id",
   );
   const navigate = useNavigate();
   const { courses, isLoading, error, refetch } =
@@ -77,7 +77,7 @@ export const ManageDepartment: React.FC = () => {
               Manage Department:
             </h1>
             <span className="text-base sm:text-lg lg:text-xl font-bold truncate">
-               {getDepartmentNameByID(Number(departmentId)) || "Loading..."}
+              {getDepartmentNameByID(Number(departmentId)) || "Loading..."}
             </span>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">

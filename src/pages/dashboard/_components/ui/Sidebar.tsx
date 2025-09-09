@@ -7,6 +7,9 @@ import {
   UserPlus,
   Building2,
   Plus,
+  Users2,
+  ShieldCheck,
+  UserCog,
 } from "lucide-react";
 import { schoolLogo } from "@/assets";
 
@@ -47,6 +50,22 @@ const Sidebar: React.FC<SidebarProps> = ({
       icon: <CreditCard className="w-4 h-4" />,
       href: "/dashboard/fees",
     },
+    {
+      name: "Staffs",
+      icon: <Users2 className="w-4 h-4" />,
+      href: "/dashboard/staffs",
+    },
+    {
+      name: "Roles & Permissions",
+      icon: <UserCog size={15} />,
+      href: "/dashboard/roles-and-permissions",
+    },
+    {
+      name: "Access Control",
+      icon: <ShieldCheck size={15} />,
+      href: "/dashboard/access-control",
+    },
+
     // { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/" },
   ];
 
@@ -54,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <div
       className={`fixed z-20 inset-y-0 left-0 transform ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full md:-translate-x-64"
-      } transition-transform duration-200 ease-in-out bg-white border-r w-64 p-4 flex flex-col`}
+      } transition-transform duration-200 ease-in-out bg-white border-r w-56 p-4 flex flex-col`}
     >
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
@@ -76,7 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <Link
             key={link.name}
             to={link.href}
-            className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded"
+            className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded text-[14px]"
             onClick={() => isMobile && closeSidebar()}
           >
             {link.icon}

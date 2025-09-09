@@ -8,7 +8,10 @@ import { DepartmentSelector } from "./DepartmentSelector";
 import Fees from "./Fees";
 import { ManageDepartment } from "./ManageDepartment";
 import { ManageFaculty } from "./ManageFaculty";
-
+import ViewStaffs from "./ViewStaffs";
+import RolesAndPermissions from "./RolesAndPermissions";
+import ViewStaffDetails from "./ViewStaffDetails";
+import AccessControl from "./AccessControl";
 export {
   Academics,
   AddResults,
@@ -20,4 +23,8 @@ export {
   Fees,
   ManageDepartment,
   ManageFaculty,
+  ViewStaffs,
+  RolesAndPermissions,
+  ViewStaffDetails,
+  AccessControl,
 };
