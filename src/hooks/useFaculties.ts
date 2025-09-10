@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import { GetFaculties } from "@/api/services/GetFaculties";
 import type { IFaculty } from "@/types/IFaculty";
+import { GetFaculties } from "@/api/services/Academics";
 
 export const useFaculties = () => {
   const [faculties, setFaculties] = useState<IFaculty[]>([]);

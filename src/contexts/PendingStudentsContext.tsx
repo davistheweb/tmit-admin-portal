@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState, useCallback } from "react";
-import { GetPendingStudents } from "@/api/services/GetPendingStudents";
 import type { IPendingStudent } from "@/types/IPendingStudent";
+import { GetPendingStudents } from "@/api/services/Students";
 
 interface PendingStudentsContextType {
   students: IPendingStudent[];

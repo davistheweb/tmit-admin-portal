@@ -1,8 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 
 import type { IRole, IPermissions } from "@/types/IRolesAndPermissions";
-import { GetRoles } from "@/api/services/getRoles";
-import { GetPermissions } from "@/api/services/getPermissions";
+import { GetPermissions, GetRoles } from "@/api/services/RolesAndPermissions";
 
 export const useRolesAndPermissons = () => {
   const [roles, setRoles] = useState<IRole[]>([]);

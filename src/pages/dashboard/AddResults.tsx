@@ -3,7 +3,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Plus, Trash2 } from "lucide-react";
-import { PostResults } from "@/api/services/PostResults";
 import { useSessionOptions } from "@/hooks/useSessionOptions";
 import ConfirmFormResetModal from "./_components/ui/ConfirmFormResetModal";
 import {
@@ -14,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PostResults } from "@/api/services/Academics";
 
 export const AddResults: React.FC = () => {
   const {

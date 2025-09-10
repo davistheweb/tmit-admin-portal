@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import { useEffect, useState, useCallback } from "react";
-import { GetPendingStudentsByDepartment } from "@/api/services/GetPendingStudentsByDepartment";
 import type { IPendingStudent } from "@/types/IPendingStudent";
+import { GetPendingStudentsByDepartment } from "@/api/services/Students";
 
 export const usePendingStudentsByDepartment = () => {
   const [searchParams] = useSearchParams();

@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import { useEffect, useState, useCallback } from "react";
-import { GetFaculties } from "@/api/services/GetFaculties";
 import type { IFaculty } from "@/types/IFaculty";
+import { GetFaculties } from "@/api/services/Academics";
 
 export const useFacultyById = () => {
   const [searchParams] = useSearchParams();

@@ -1,5 +1,4 @@
-import { GetAllRoutes } from "@/api/services/getAllRoutes";
-import { GetProtectedRoutes } from "@/api/services/getProtectedRoutes";
+import { GetAllRoutes, GetProtectedRoutes } from "@/api/services/AccessControl";
 import type { IProtectedRoutes, IRoutes } from "@/types/IAccessControl";
 import { useEffect, useState, useCallback } from "react";
 

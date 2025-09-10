@@ -11,8 +11,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
-import { LoginAdmin } from "@/api/services/LoginAdmin";
 import { useAuth } from "@/hooks/useAuth";
+import { LoginAdmin } from "@/api/services/Admin";
 
 const LoginForm: React.FC = () => {
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);

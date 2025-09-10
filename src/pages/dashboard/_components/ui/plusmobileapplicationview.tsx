@@ -3,9 +3,8 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { usePendingStudentsByDepartment } from "@/hooks/usePendingStudentsByDepartment";
-import { approveStudent } from "@/api/services/approveStudent";
-import { rejectStudent } from "@/api/services/rejectStudent";
 import { faculties } from "@/data";
+import { approveStudent, rejectStudent } from "@/api/services/Students";
 
 const Spinner = () => (
   <div className="flex justify-center items-center py-12">

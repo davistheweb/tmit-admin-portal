@@ -4,11 +4,10 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router";
 import { useCoursesByDepartmentId } from "@/hooks/useCoursesByDepartmentId";
-import { CreateCourse } from "@/api/services/CreateCourse";
-import { DeleteCourse } from "@/api/services/DeleteCourse";
 import { CourseForm } from "./_components/CourseForm";
 import { useFaculties } from "@/hooks/useFaculties";
 import ConfirmDeleteCourseModal from "./_components/ui/ConfirmDeleteCourseModal";
+import { CreateCourse, DeleteCourse } from "@/api/services/Academics";
 
 const Spinner = () => (
   <div className="flex justify-center items-center py-12">

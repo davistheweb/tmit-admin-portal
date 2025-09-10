@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { logoutAdmin } from "@/api/services/LogoutAdmin";
 import { useAuth } from "@/hooks/useAuth";
+import { logoutAdmin } from "@/api/services/Admin";
 
 interface ProfileDropdownProps {
   open: boolean;

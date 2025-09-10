@@ -37,11 +37,13 @@ import {
   PermissionFormSchema,
   type PermissionFormValues,
 } from "@/lib/validators/PermissionFormSchema";
-import { CreateRoles } from "@/api/services/CreateRoles";
 import { toast } from "sonner";
-import { CreatePermissions } from "@/api/services/CreatePermissions";
 import { useRolesAndPermissons } from "@/hooks/useRolesAndPermissions";
 import Loader from "./_components/ui/Loader";
+import {
+  CreatePermissions,
+  CreateRoles,
+} from "@/api/services/RolesAndPermissions";
 
 export default function RolesAndPermissions() {
   const { roles, permissions, isLoading, error, refetch } =

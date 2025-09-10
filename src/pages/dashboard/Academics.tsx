@@ -3,9 +3,9 @@ import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useFaculties } from "@/hooks/useFaculties";
-import { CreateFaculty } from "@/api/services/CreateFaculty";
 import { FacultyForm } from "./_components/FacultyForm";
 import { Link } from "react-router";
+import { CreateFaculty } from "@/api/services/Academics";
 
 const Spinner = () => (
   <div className="flex justify-center items-center py-12">

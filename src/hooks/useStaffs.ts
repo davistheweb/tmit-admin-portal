@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getStaffs } from "@/api/services/getStaffs";
 import type { IStaffListResponse } from "@/types/IStaff";
+import { getStaffs } from "@/api/services/Staffs";
 
 export const useStaffs = () => {
   const [data, setData] = useState<IStaffListResponse | null>(null);
