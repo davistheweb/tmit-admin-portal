@@ -14,15 +14,16 @@ export interface IRole {
   id: string;
   name: string;
   description: string;
-  permissions: IPermission[];
 }
 
 export interface IStaff {
   id: string;
   name: string;
   email: string;
-  roles: IRole[];
-  permissions: IPermission[];
+  roles: string[];
+  permissions: string[];
+  // roles: IRole[];
+  // permissions: IPermission[];
 }
 
 export interface IStaffListResponse {
@@ -37,6 +38,8 @@ export interface IStaffDetailsResponse {
   id: string;
   name: string;
   email: string;
-  roles: IRole[];
-  permissions: IPermission[];
+  roles: string[];
+  permissions: string[];
+  // roles: IRole[];
+  // permissions: IPermission[];
 }

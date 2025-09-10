@@ -31,3 +31,21 @@ export const getStaffs = async (): Promise<IStaffListResponse | string> => {
     return "Something went wrong";
   }
 };
+
+export const assignRoleToStaff = async (
+  staff_id: number,
+  role_id: number,
+): Promise<{ message: string }> => {
+  try {
+    const response = await api.post<{ message: string }>(
+      "/api/admin/roles/assign",
+      { staff_id, role_id },
+    );
+    return response.data;
+  } catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      return err.response?.data?.message || "Failed to Assign role to staff";
+    }
+    return { message: "Something went wrong." };
+  }
+};

@@ -1,14 +1,5 @@
-"use client";
-
-import type React from "react";
 // import { useState } from "react";
-import {
-  Mail,
-  // Shield,
-  ArrowLeft,
-  Angry,
-  FileText,
-} from "lucide-react";
+import { Mail, Shield, ArrowLeft, Angry, FileText } from "lucide-react";
 // import type { IRole, IPermission } from "@/types/IStaff";
 import { useNavigate, useParams } from "react-router";
 import { useStaffsDetails } from "@/hooks/useStaffDetails";
@@ -93,7 +84,7 @@ import { Button } from "@/components/ui/button";
 //   },
 // ];
 
-const ViewStaffDetails: React.FC = () => {
+const ViewStaffDetails = () => {
   // const [selectedStaff, setSelectedStaff] = useState({
   //   id: "1",
   //   name: "Dr. Sarah Johnson",
@@ -105,7 +96,7 @@ const ViewStaffDetails: React.FC = () => {
 
   const { staffId } = useParams();
   const { data, loading, error, refetch } = useStaffsDetails(staffId);
-  console.log(error);
+  console.log(data);
 
   if (loading)
     return <Loader title="Loading" subtitle="Loading Staff details" />;
@@ -218,62 +209,82 @@ const ViewStaffDetails: React.FC = () => {
           </div>
 
           {/* Role & Permissions */}
-          {/* <div className="lg:col-span-2 space-y-6">
-         
+          <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">
                 Role Information
               </h3>
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <div className="flex items-center mb-2">
-                  <Shield className="h-5 w-5 text-green-600 mr-2" />
-                  <h4 className="font-medium text-green-900">
-                    {selectedStaff.roles.name}
-                  </h4>
+              {!data?.roles.length ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-center">NO ROLES FOR THIS STAFF</p>
                 </div>
-                <p className="text-green-700 text-sm">
-                  {selectedStaff.roles.description}
-                </p>
-              </div>
+              ) : (
+                <div className="grid lg:grid-cols-2 gap-3">
+                  {data.roles.map((role, _i) => (
+                    <div
+                      className="bg-green-50 border border-green-200 rounded-lg p-4"
+                      key={_i}
+                    >
+                      <div className="flex items-center mb-2">
+                        <Shield className="h-5 w-5 text-green-600 mr-2" />
+                        <h4 className="font-medium text-green-900">{role}</h4>
+                      </div>
+                      <p className="text-green-700 text-sm">
+                        {/* {data.roles.description} */}
+                        Role Description
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-        
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Permissions ({selectedStaff.roles.permissions.length})
+                Permissions
+                {!data?.permissions.length
+                  ? ""
+                  : ` (${data?.permissions.length})`}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {selectedStaff.roles.permissions.map((permission) => (
-                  <div
-                    key={permission.id}
-                    className="border border-gray-200 rounded-lg p-4 hover:border-green-300 transition-colors"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-medium text-gray-900">
-                        {permission.name}
-                      </h4>
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          permission.category === "admin"
-                            ? "bg-red-100 text-red-700"
-                            : permission.category === "write"
+              {!data?.permissions.length ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-center">NO PERMISSIONS FOR THIS STAFF</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {data.permissions.map((permission, _i) => (
+                    <div
+                      key={_i}
+                      className="border border-gray-200 rounded-lg p-4 hover:border-green-300 transition-colors"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-medium text-gray-900">
+                          {permission}
+                        </h4>
+                        {/* <span
+                          className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            permission.category === "admin"
+                              ? "bg-red-100 text-red-700"
+                              : permission.category === "write"
                               ? "bg-yellow-100 text-yellow-700"
                               : permission.category === "delete"
-                                ? "bg-orange-100 text-orange-700"
-                                : "bg-blue-100 text-blue-700"
-                        }`}
-                      >
-                        {permission.category}
-                      </span>
+                              ? "bg-orange-100 text-orange-700"
+                              : "bg-blue-100 text-blue-700"
+                          }`}
+                        >
+                          {permission.category}
+                        </span> */}
+                      </div>
+                      <p className="text-gray-600 text-sm">
+                        Permission Description
+                        {/* {permission.description} */}
+                      </p>
                     </div>
-                    <p className="text-gray-600 text-sm">
-                      {permission.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

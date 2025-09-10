@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import type { IStaffDetailsResponse } from "@/types/IStaff";
 import { getStaffDetails } from "@/api/services/Staffs";
+import type { IStaff } from "@/types/IStaff";
 
 export const useStaffsDetails = (id: string | number | undefined) => {
-  const [data, setData] = useState<IStaffDetailsResponse | null>(null);
+  const [data, setData] = useState<IStaff | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
