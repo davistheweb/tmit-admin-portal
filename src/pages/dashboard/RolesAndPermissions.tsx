@@ -29,14 +29,6 @@ import {
 import type { IPermissions, IRole } from "@/types/IRolesAndPermissions";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  RoleFormSchema,
-  type RoleFormValues,
-} from "@/lib/validators/RoleFormSchema";
-import {
-  PermissionFormSchema,
-  type PermissionFormValues,
-} from "@/lib/validators/PermissionFormSchema";
 import { toast } from "sonner";
 import { useRolesAndPermissons } from "@/hooks/useRolesAndPermissions";
 import Loader from "./_components/ui/Loader";
@@ -44,6 +36,7 @@ import {
   CreatePermissions,
   CreateRoles,
 } from "@/api/services/RolesAndPermissions";
+import { PermissionFormSchema, RoleFormSchema, type PermissionFormValues, type RoleFormValues } from "@/lib/validators/RolesAndPermissionSchemas";
 
 export default function RolesAndPermissions() {
   const { roles, permissions, isLoading, error, refetch } =

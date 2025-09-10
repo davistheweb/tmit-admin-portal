@@ -2,10 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  facultyFormSchema,
-  type FacultyFormSchema,
-} from "@/lib/validators/facultyFormSchema";
-import {
   Dialog,
   DialogContent,
   DialogTitle,
@@ -14,6 +10,7 @@ import {
 } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { facultyFormSchema, type FacultyFormSchema } from "@/lib/validators/AcademicsSchema";
 
 export const FacultyForm: React.FC<{
   onSubmit: (data: FacultyFormSchema) => void;

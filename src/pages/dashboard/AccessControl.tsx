@@ -46,18 +46,12 @@ import type {
   IRoutes,
 } from "@/types/IAccessControl";
 import { useRolesAndPermissons } from "@/hooks/useRolesAndPermissions";
-import {
-  permissionToRouteFormSchema,
-  type permissionToRouteFormValues,
-} from "@/lib/validators/addPermissionToRouteFormSchema";
-import {
-  assignRolesToPermissionFormSchema,
-  type assignRolesToPermissionFormValue,
-} from "@/lib/validators/assignRolesToPermissionFormSchema";
+
 import {
   addPermissionToRoute,
   assignRolesToPermissionService,
 } from "@/api/services/AccessControl";
+import { assignRolesToPermissionFormSchema, permissionToRouteFormSchema, type assignRolesToPermissionFormValue, type permissionToRouteFormValues } from "@/lib/validators/AccessControlSchemas";
 const getMethodBadgeClasses = (method: string) => {
   switch (method.toLowerCase()) {
     case "get":

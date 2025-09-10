@@ -10,11 +10,8 @@ import {
 } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import {
-  courseFormSchema,
-  type CourseFormSchema,
-} from "@/lib/validators/courseFormSchema";
 import { useSessionOptions } from "@/hooks/useSessionOptions";
+import { courseFormSchema, type CourseFormSchema } from "@/lib/validators/AcademicsSchema";
 
 interface CourseFormProps {
   onSubmit: (data: CourseFormSchema) => void;
