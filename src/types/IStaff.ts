@@ -43,3 +43,8 @@ export interface IStaffDetailsResponse {
   // roles: IRole[];
   // permissions: IPermission[];
 }
+
+export interface IAssignRoleToStaff {
+  staff_id: number;
+  role_id: number;
+}

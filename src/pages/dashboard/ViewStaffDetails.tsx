@@ -1,10 +1,35 @@
-// import { useState } from "react";
-import { Mail, Shield, ArrowLeft, Angry, FileText } from "lucide-react";
+import { useState } from "react";
+import { Mail, Shield, ArrowLeft, Angry, FileText, Plus } from "lucide-react";
 // import type { IRole, IPermission } from "@/types/IStaff";
 import { useNavigate, useParams } from "react-router";
 import { useStaffsDetails } from "@/hooks/useStaffDetails";
 import Loader from "./_components/ui/Loader";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Controller, useForm } from "react-hook-form";
+import type { IAssignRoleToStaff } from "@/types/IStaff";
+import { useRolesAndPermissons } from "@/hooks/useRolesAndPermissions";
+import {
+  assignRolesToStaffFormSchema,
+  type assignRolesToStaffFormValues,
+} from "@/lib/validators/assignRolesToStaffFormSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { assignRoleToStaff } from "@/api/services/Staffs";
+import { toast } from "sonner";
 
 // Dummy data
 // const permissions: IPermission[] = [
@@ -92,11 +117,44 @@ const ViewStaffDetails = () => {
   //   roles: roles[0],
   // });
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [editing, setEditing] = useState<{
+    type: "assignRoleToStaff";
+    item: IAssignRoleToStaff;
+  } | null>(null);
+
   const navigate = useNavigate();
 
   const { staffId } = useParams();
   const { data, loading, error, refetch } = useStaffsDetails(staffId);
-  console.log(data);
+
+  const { roles } = useRolesAndPermissons();
+
+  const {
+    // register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<assignRolesToStaffFormValues>({
+    resolver: zodResolver(assignRolesToStaffFormSchema),
+    defaultValues: { staff_id: Number(staffId), role_id: 1 },
+  });
+
+  const handleAssignRoleToStaff = async (
+    data: assignRolesToStaffFormValues,
+  ) => {
+    const assignRolesToStaffData = await assignRoleToStaff(
+      data.staff_id,
+      data.role_id,
+    );
+    if (typeof assignRolesToStaffData === "object") {
+      toast.success(assignRolesToStaffData.message);
+      setIsOpen(false);
+    } else {
+      toast.error(assignRolesToStaffData);
+    }
+  };
 
   if (loading)
     return <Loader title="Loading" subtitle="Loading Staff details" />;
@@ -131,8 +189,8 @@ const ViewStaffDetails = () => {
     );
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="flex bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-8 w-full">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <button
@@ -151,6 +209,190 @@ const ViewStaffDetails = () => {
               </div>
             </div>
           </div>
+        </div>
+        {/* Assign Roles to staff */}
+        <div className="flex flex-col sm:flex-row lg:items-center gap-3 px-4">
+          Actions
+          {/* <div>
+            <Label htmlFor="create-type" className="sr-only">
+              Create type
+            </Label>
+            <Select
+              value={selectedType}
+              onValueChange={(val) =>
+                setSelectedType(
+                  val as "addPermissionToRoute" | "assignRolesToPermission"
+                )
+              }
+            >
+              <SelectTrigger
+                id="create-type"
+                className="w-[180px] cursor-pointer shadow-sm border-muted-foreground/20"
+              >
+                <SelectValue placeholder="Add Permission To Route or Assign Roles To Permission" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem
+                  className="cursor-pointer"
+                  value="addPermissionToRoute"
+                >
+                  <div className="flex items-center gap-2">
+                    Add Permission To Route
+                  </div>
+                </SelectItem>
+                <SelectItem
+                  className="cursor-pointer"
+                  value="assignRolesToPermission"
+                >
+                  <div className="flex items-center gap-2">
+                    Assign Roles To Permission
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div> */}
+          {/* form */}
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild className="cursor-pointer">
+              <Button
+                className="cursor-pointer flex items-center shadow-sm bg-primary hover:bg-primary/90 transition-all duration-200"
+                // onClick={() => {
+                //   if (!editing) {
+                //     addPermissionToRouteForm.reset();
+                //     addPermissionToRouteForm.reset();
+                //   }
+                // }}
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                {/* 
+                {selectedType === "addPermissionToRoute"
+                  ? "Add Permission To Route"
+                  : "Assign Roles To Permission"} */}
+                Assign Role
+              </Button>
+            </DialogTrigger>
+
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader className="space-y-3">
+                <DialogTitle className="text-xl">
+                  {/* {editing
+                    ? editing.type === "addPermissionToRoute"
+                      ? "Edit Permission To Route"
+                      : "Edit Assign Roles To Permission"
+                    : selectedType === "addPermissionToRoute"
+                    ? "Add Permission To Route"
+                    : "Assign Roles To Permission"} */}
+                  Assign Role To Staff
+                </DialogTitle>
+              </DialogHeader>
+
+              <form
+                onSubmit={handleSubmit(handleAssignRoleToStaff)}
+                className="space-y-6"
+              >
+                <div className="space-y-2">
+                  <div className="space-y-3">
+                    <Label htmlFor="staff_name" className="text-sm font-medium">
+                      Staff Name: {data?.name}
+                    </Label>
+
+                    <Controller
+                      name="staff_id"
+                      control={control}
+                      render={({ field, fieldState }) => (
+                        <div className="space-y-2">
+                          <Select
+                            defaultValue={data?.name}
+                            onValueChange={field.onChange}
+                            value={field.value.toString()}
+                            disabled
+                          >
+                            <SelectTrigger className="w-full cursor-pointer shadow-sm border-muted-foreground/20">
+                              <SelectValue placeholder="Select route name" />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                              <SelectItem
+                                className="cursor-pointer"
+                                value={Number(data?.id).toString()}
+                              >
+                                {data?.name}
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                          {fieldState.error && (
+                            <p className="text-xs text-red-500">
+                              {fieldState.error.message}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    />
+                    <Label htmlFor="route_name" className="text-sm font-medium">
+                      Select Role
+                    </Label>
+                    <Controller
+                      name="role_id"
+                      control={control}
+                      render={({ field, fieldState }) => (
+                        <div className="space-y-2">
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value.toString()}
+                          >
+                            <SelectTrigger className="w-full cursor-pointer shadow-sm border-muted-foreground/20">
+                              <SelectValue placeholder="Select role name" />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                              {roles.map((role, i) => (
+                                <SelectItem
+                                  className="cursor-pointer"
+                                  key={`${role.name}-${i}`}
+                                  value={role.id.toString()}
+                                >
+                                  {role.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          {fieldState.error && (
+                            <p className="text-xs text-red-500">
+                              {fieldState.error.message}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    />
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 pt-2">
+                  <Button
+                    type="submit"
+                    className="cursor-pointer flex-1 shadow-sm transition-all duration-200"
+                    disabled={isSubmitting}
+                  >
+                    {editing ? "Update" : "Assign"}
+                    {isSubmitting && (
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent ml-2" />
+                    )}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="cursor-pointer bg-transparent"
+                    onClick={() => {
+                      reset();
+                      setIsOpen(false);
+                      setEditing(null);
+                    }}
+                    type="button"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 

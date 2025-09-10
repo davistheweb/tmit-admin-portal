@@ -17,8 +17,8 @@ import {
 import {
   MoreHorizontal,
   Eye,
-  Edit,
-  Trash2,
+  // Edit,
+  // Trash2,
   Users,
   FileText,
 } from "lucide-react";
@@ -138,10 +138,15 @@ export default function ViewStaffsPage() {
                               {staff.email}
                             </div>
                             <div className="text-xs sm:text-sm text-muted-foreground mt-1">
-                              {staff.roles.length} Roles
+                              {staff.roles.length}
+                              {staff.roles.length > 1 ? "Roles" : "Role"}
                             </div>
                             <div className="text-xs sm:text-sm text-muted-foreground mt-1">
-                              {staff.permissions.length} permissions
+                              {staff.permissions.length}{" "}
+                              {staff.permissions.length}{" "}
+                              {staff.permissions.length > 1
+                                ? "Permissions"
+                                : "Permission"}
                             </div>
                           </div>
                         </div>
@@ -160,14 +165,14 @@ export default function ViewStaffsPage() {
                               <Eye className="mr-2 h-4 w-4" />
                               <Link to={`${staff.id}`}>View Details</Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            {/* <DropdownMenuItem>
                               <Edit className="mr-2 h-4 w-4" />
                               Edit Staff
                             </DropdownMenuItem>
                             <DropdownMenuItem className="text-destructive">
                               <Trash2 className="mr-2 h-4 w-4" />
                               Remove Staff
-                            </DropdownMenuItem>
+                            </DropdownMenuItem> */}
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </div>
@@ -220,10 +225,14 @@ export default function ViewStaffsPage() {
                           </div>
                         </TableCell>
                         <TableCell className="text-xs sm:text-sm">
-                          {staff.roles.length} Roles
+                          {staff.roles.length}{" "}
+                          {staff.roles.length > 1 ? "Roles" : "Role"}
                         </TableCell>
                         <TableCell className="text-xs sm:text-sm">
-                          {staff.permissions.length} permissions
+                          {staff.permissions.length}{" "}
+                          {staff.permissions.length > 1
+                            ? "Permissions"
+                            : "Permission"}
                         </TableCell>
                         <TableCell>
                           <DropdownMenu>
@@ -241,14 +250,14 @@ export default function ViewStaffsPage() {
                                 <Eye className="mr-2 h-4 w-4" />
                                 <Link to={`${staff.id}`}>View Details</Link>
                               </DropdownMenuItem>
-                              <DropdownMenuItem className="cursor-pointer">
+                              {/* <DropdownMenuItem className="cursor-pointer">
                                 <Edit className="mr-2 h-4 w-4" />
                                 Edit Staff
                               </DropdownMenuItem>
                               <DropdownMenuItem className="text-destructive cursor-pointer">
                                 <Trash2 className="mr-2 h-4 w-4" />
                                 Remove Staff
-                              </DropdownMenuItem>
+                              </DropdownMenuItem> */}
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
