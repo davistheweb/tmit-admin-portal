@@ -10,7 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PostResults } from "@/api/services/Academics";
-import { resultsSchema, type ResultsForm } from "@/lib/validators/AcademicsSchema";
+import {
+  resultsSchema,
+  type ResultsForm,
+} from "@/lib/validators/AcademicsSchema";
 
 export const AddResults: React.FC = () => {
   const {

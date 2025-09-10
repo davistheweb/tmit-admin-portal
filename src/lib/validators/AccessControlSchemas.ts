@@ -11,7 +11,6 @@ export type permissionToRouteFormValues = z.infer<
   typeof permissionToRouteFormSchema
 >;
 
-
 export const assignRolesToPermissionFormSchema = z.object({
   permission_id: z.coerce
     .number()
@@ -22,4 +21,3 @@ export const assignRolesToPermissionFormSchema = z.object({
 export type assignRolesToPermissionFormValue = z.infer<
   typeof assignRolesToPermissionFormSchema
 >;
-

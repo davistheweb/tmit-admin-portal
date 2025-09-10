@@ -51,7 +51,12 @@ import {
   addPermissionToRoute,
   assignRolesToPermissionService,
 } from "@/api/services/AccessControl";
-import { assignRolesToPermissionFormSchema, permissionToRouteFormSchema, type assignRolesToPermissionFormValue, type permissionToRouteFormValues } from "@/lib/validators/AccessControlSchemas";
+import {
+  assignRolesToPermissionFormSchema,
+  permissionToRouteFormSchema,
+  type assignRolesToPermissionFormValue,
+  type permissionToRouteFormValues,
+} from "@/lib/validators/AccessControlSchemas";
 const getMethodBadgeClasses = (method: string) => {
   switch (method.toLowerCase()) {
     case "get":

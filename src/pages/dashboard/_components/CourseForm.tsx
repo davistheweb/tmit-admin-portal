@@ -11,7 +11,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useSessionOptions } from "@/hooks/useSessionOptions";
-import { courseFormSchema, type CourseFormSchema } from "@/lib/validators/AcademicsSchema";
+import {
+  courseFormSchema,
+  type CourseFormSchema,
+} from "@/lib/validators/AcademicsSchema";
 
 interface CourseFormProps {
   onSubmit: (data: CourseFormSchema) => void;

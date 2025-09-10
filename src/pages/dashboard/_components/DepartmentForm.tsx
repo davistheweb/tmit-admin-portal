@@ -10,7 +10,10 @@ import {
 } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { departmentFormSchema, type DepartmentFormSchema } from "@/lib/validators/AcademicsSchema";
+import {
+  departmentFormSchema,
+  type DepartmentFormSchema,
+} from "@/lib/validators/AcademicsSchema";
 
 export const DepartmentForm: React.FC<{
   onSubmit: (data: DepartmentFormSchema) => void;

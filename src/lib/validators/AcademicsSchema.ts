@@ -40,7 +40,7 @@ export const resultsSchema = z.object({
           })
           .min(0, "Score must be at least 0")
           .max(100, "Score cannot exceed 100"),
-      })
+      }),
     )
     .min(1, "At least one result is required"),
 });

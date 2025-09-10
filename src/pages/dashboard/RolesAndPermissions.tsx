@@ -36,7 +36,12 @@ import {
   CreatePermissions,
   CreateRoles,
 } from "@/api/services/RolesAndPermissions";
-import { PermissionFormSchema, RoleFormSchema, type PermissionFormValues, type RoleFormValues } from "@/lib/validators/RolesAndPermissionSchemas";
+import {
+  PermissionFormSchema,
+  RoleFormSchema,
+  type PermissionFormValues,
+  type RoleFormValues,
+} from "@/lib/validators/RolesAndPermissionSchemas";
 
 export default function RolesAndPermissions() {
   const { roles, permissions, isLoading, error, refetch } =
