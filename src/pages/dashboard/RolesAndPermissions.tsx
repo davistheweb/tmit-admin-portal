@@ -104,7 +104,7 @@ export default function RolesAndPermissions() {
     }
   }; */
 
-  const handleCreateAccessControl = async (
+  const handleSubmitRolesAndPermission = async (
     data: RoleFormValues | PermissionFormValues,
   ) => {
     // create new
@@ -248,8 +248,10 @@ export default function RolesAndPermissions() {
               <form
                 onSubmit={
                   selectedType === "role"
-                    ? roleForm.handleSubmit(handleCreateAccessControl)
-                    : permissionForm.handleSubmit(handleCreateAccessControl)
+                    ? roleForm.handleSubmit(handleSubmitRolesAndPermission)
+                    : permissionForm.handleSubmit(
+                        handleSubmitRolesAndPermission,
+                      )
                 }
                 className="space-y-6"
               >
