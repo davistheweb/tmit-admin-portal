@@ -12,7 +12,7 @@ export const useFacultyById = () => {
 
   const fetch = useCallback(async () => {
     if (!facultyId) {
-      setError("No faculty ID specified");
+      setError("No faculty ID Provided");
       setFaculty(null);
       setLoading(false);
       return;
@@ -25,6 +25,7 @@ export const useFacultyById = () => {
       setFaculty(null);
     } else {
       const selectedFaculty = result.find((f) => f.id.toString() === facultyId);
+
       if (!selectedFaculty) {
         setError("Faculty not found");
         setFaculty(null);

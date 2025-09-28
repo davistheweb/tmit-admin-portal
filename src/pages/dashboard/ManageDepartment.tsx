@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { useCoursesByDepartmentId } from "@/hooks/useCoursesByDepartmentId";
 import { CourseForm } from "./_components/CourseForm";
 import { useFaculties } from "@/hooks/useFaculties";
@@ -16,10 +16,12 @@ const Spinner = () => (
 );
 
 export const ManageDepartment: React.FC = () => {
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  /*   const location = useLocation();
   const departmentId = new URLSearchParams(location.search).get(
-    "department_id",
-  );
+    "department_id"
+  ); */
+  const departmentId = searchParams.get("department_id") || "";
   const navigate = useNavigate();
   const { courses, isLoading, error, refetch } =
     useCoursesByDepartmentId(departmentId);

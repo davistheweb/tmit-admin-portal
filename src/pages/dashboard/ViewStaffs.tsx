@@ -75,10 +75,6 @@ export default function ViewStaffsPage() {
               </p>
             </div>
           </div>
-          {/* <Button className="bg-primary hover:bg-primary/90 text-xs sm:text-sm py-2 cursor-pointer">
-            <UserPlus className="mr-1 h-4 w-4" />
-            Add Staff
-          </Button> */}
         </div>
 
         {/* Stats Cards */}

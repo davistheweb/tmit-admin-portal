@@ -28,7 +28,7 @@ const FacultyCard = ({
         </p>
       </div>
       <Link
-        to={`/dashboard/academics/manage-faculty?facultyid=${faculty.id}`}
+        to={`manage-faculty?facultyid=${faculty.id}`}
         className="text-xs font-medium text-green-700 hover:text-green-800 bg-green-50 hover:bg-green-100 px-2 py-1 rounded"
       >
         Manage
@@ -144,7 +144,7 @@ export const Academics: React.FC = () => {
                         </td>
                         <td className="px-4 py-4 text-sm">
                           <Link
-                            to={`/dashboard/academics/manage-faculty?facultyid=${faculty.id}`}
+                            to={`manage-faculty?facultyid=${faculty.id}`}
                             className="text-green-700 hover:text-green-800 bg-green-50 hover:bg-green-100 px-2 py-1 rounded cursor-pointer"
                           >
                             Manage
