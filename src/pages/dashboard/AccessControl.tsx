@@ -198,7 +198,7 @@ export default function AccessControl() {
               value={selectedType}
               onValueChange={(val) =>
                 setSelectedType(
-                  val as "addPermissionToRoute" | "assignRolesToPermission",
+                  val as "addPermissionToRoute" | "assignRolesToPermission"
                 )
               }
             >
@@ -256,8 +256,8 @@ export default function AccessControl() {
                       ? "Edit Permission To Route"
                       : "Edit Assign Roles To Permission"
                     : selectedType === "addPermissionToRoute"
-                      ? "Add Permission To Route"
-                      : "Assign Roles To Permission"}
+                    ? "Add Permission To Route"
+                    : "Assign Roles To Permission"}
                 </DialogTitle>
               </DialogHeader>
 
@@ -265,10 +265,10 @@ export default function AccessControl() {
                 onSubmit={
                   selectedType === "addPermissionToRoute"
                     ? addPermissionToRouteForm.handleSubmit(
-                        handleCreateAccessControl,
+                        handleCreateAccessControl
                       )
                     : assignRolesToPermissionForm.handleSubmit(
-                        handleCreateAccessControl,
+                        handleCreateAccessControl
                       )
                 }
                 className="space-y-6"
@@ -366,47 +366,6 @@ export default function AccessControl() {
                   ) : (
                     <div className="space-y-3">
                       <Label
-                        htmlFor="permission_id"
-                        className="text-sm font-medium"
-                      >
-                        Select Permission
-                      </Label>
-                      <Controller
-                        name="permission_id"
-                        control={assignRolesToPermissionForm.control}
-                        render={({ field, fieldState }) => (
-                          <div className="space-y-2">
-                            <Select
-                              onValueChange={field.onChange}
-                              value={field.value.toString()}
-                            >
-                              <SelectTrigger
-                                id="create-type"
-                                className="w-full cursor-pointer shadow-sm border-muted-foreground/20"
-                              >
-                                <SelectValue placeholder="Select permission" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {permissions.map((perm, i) => (
-                                  <SelectItem
-                                    className="cursor-pointer"
-                                    key={i}
-                                    value={perm.id.toString()}
-                                  >
-                                    {perm.name}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            {fieldState.error && (
-                              <p className="text-xs text-red-500">
-                                {fieldState.error.message}
-                              </p>
-                            )}
-                          </div>
-                        )}
-                      />
-                      <Label
                         htmlFor="route_name"
                         className="text-sm font-medium"
                       >
@@ -438,6 +397,47 @@ export default function AccessControl() {
                                     value={role.id.toString()}
                                   >
                                     {role.name}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            {fieldState.error && (
+                              <p className="text-xs text-red-500">
+                                {fieldState.error.message}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      />
+                      <Label
+                        htmlFor="permission_id"
+                        className="text-sm font-medium"
+                      >
+                        Select Permission
+                      </Label>
+                      <Controller
+                        name="permission_id"
+                        control={assignRolesToPermissionForm.control}
+                        render={({ field, fieldState }) => (
+                          <div className="space-y-2">
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value.toString()}
+                            >
+                              <SelectTrigger
+                                id="create-type"
+                                className="w-full cursor-pointer shadow-sm border-muted-foreground/20"
+                              >
+                                <SelectValue placeholder="Select permission" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {permissions.map((perm, i) => (
+                                  <SelectItem
+                                    className="cursor-pointer"
+                                    key={i}
+                                    value={perm.id.toString()}
+                                  >
+                                    {perm.name}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -522,8 +522,8 @@ export default function AccessControl() {
                     {editing
                       ? "Update"
                       : selectedType === "addPermissionToRoute"
-                        ? "Add Permission To Route"
-                        : "Assign Roles To Permission"}
+                      ? "Add Permission To Route"
+                      : "Assign Roles To Permission"}
                     {(selectedType === "addPermissionToRoute"
                       ? addPermissionToRouteForm.formState.isSubmitting
                       : assignRolesToPermissionForm.formState.isSubmitting) && (
@@ -605,7 +605,7 @@ export default function AccessControl() {
                         <div className="flex items-center gap-3 flex-wrap">
                           <Badge
                             className={`text-xs font-semibold px-3 py-1 ${getMethodBadgeClasses(
-                              route.method,
+                              route.method
                             )}`}
                           >
                             {route.method.toUpperCase()}
@@ -681,7 +681,7 @@ export default function AccessControl() {
               {protectedRoutes.map((protectedRoute, index) => {
                 // Find the corresponding route to get the method
                 const correspondingRoute = allRoutes.find(
-                  (route) => route.name === protectedRoute.route_name,
+                  (route) => route.name === protectedRoute.route_name
                 );
                 const method = correspondingRoute?.method || "GET";
 
@@ -697,7 +697,7 @@ export default function AccessControl() {
                           <div className="flex items-center gap-3 flex-wrap">
                             <Badge
                               className={`text-xs font-semibold px-3 py-1 ${getMethodBadgeClasses(
-                                method,
+                                method
                               )}`}
                             >
                               {method.toUpperCase()}
