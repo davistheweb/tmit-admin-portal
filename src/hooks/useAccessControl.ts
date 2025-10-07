@@ -34,16 +34,9 @@ export const useAccessControls = () => {
     fetch();
 
     const refetchInterval = setInterval(async () => {
-      try {
-        const protectedRoutesResult = await GetProtectedRoutes();
+      const protectedRoutesResult = await GetProtectedRoutes();
 
-        setProtectedRoutes(protectedRoutesResult);
-      } catch (err) {
-        const message = err instanceof Error ? err.message : "Unknown error";
-        setError(message);
-        setRoutes(null);
-        setProtectedRoutes([]);
-      }
+      setProtectedRoutes(protectedRoutesResult);
     }, 3000);
 
     return () => clearInterval(refetchInterval);
