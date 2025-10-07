@@ -5,7 +5,7 @@ import { useEffect, useState, useCallback } from "react";
 export const useAccessControls = () => {
   const [routes, setRoutes] = useState<IRoutes | null>(null);
   const [protectedRoutes, setProtectedRoutes] = useState<IProtectedRoutes[]>(
-    [],
+    []
   );
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,6 +32,21 @@ export const useAccessControls = () => {
 
   useEffect(() => {
     fetch();
+
+    const refetchInterval = setInterval(async () => {
+      try {
+        const protectedRoutesResult = await GetProtectedRoutes();
+
+        setProtectedRoutes(protectedRoutesResult);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Unknown error";
+        setError(message);
+        setRoutes(null);
+        setProtectedRoutes([]);
+      }
+    }, 3000);
+
+    return () => clearInterval(refetchInterval);
   }, [fetch]);
 
   console.log(routes);
