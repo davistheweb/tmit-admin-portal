@@ -34,9 +34,11 @@ export const useAccessControls = () => {
     fetch();
 
     const refetchInterval = setInterval(async () => {
-      const protectedRoutesResult = await GetProtectedRoutes();
+      if (navigator.onLine) {
+        const protectedRoutesResult = await GetProtectedRoutes();
 
-      setProtectedRoutes(protectedRoutesResult);
+        setProtectedRoutes(protectedRoutesResult);
+      }
     }, 3000);
 
     return () => clearInterval(refetchInterval);
