@@ -9,13 +9,14 @@ import {
   Dashboard,
   DashboardIndex,
   DepartmentSelector,
-  Fees,
   ManageDepartment,
   ManageFaculty,
   ViewStaffs,
   ViewStaffDetails,
   RolesAndPermissions,
   AccessControl,
+  ManageFeesPage,
+  OtherDepartmentFeesPage,
 } from "@/pages/dashboard";
 import { ProtectedRoute } from "@/routes/ProtectedRoutes";
 
@@ -47,7 +48,11 @@ const App = () => {
             <Route path="select-department" element={<DepartmentSelector />} />
             <Route path="applications" element={<ApplicationsPage />} />
             <Route path="add-results" element={<AddResults />} />
-            <Route path="fees" element={<Fees />} />
+            <Route path="bursary/manage-fees" element={<ManageFeesPage />} />
+            <Route
+              path="bursary/manage-fees/other-department"
+              element={<OtherDepartmentFeesPage />}
+            />
             <Route path="staffs" element={<ViewStaffs />} />
             <Route path="staffs/:staffId" element={<ViewStaffDetails />} />
             <Route

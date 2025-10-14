@@ -12,6 +12,8 @@ import ViewStaffs from "./ViewStaffs";
 import RolesAndPermissions from "./RolesAndPermissions";
 import ViewStaffDetails from "./ViewStaffDetails";
 import AccessControl from "./AccessControl";
+import ManageFeesPage from "./ManageFees";
+import OtherDepartmentFeesPage from "./OtherDepartmentFeesPage";
 export {
   Academics,
   AddResults,
@@ -27,4 +29,6 @@ export {
   RolesAndPermissions,
   ViewStaffDetails,
   AccessControl,
+  ManageFeesPage,
+  OtherDepartmentFeesPage
 };
