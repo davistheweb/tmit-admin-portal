@@ -45,7 +45,7 @@ import {
   Wallet,
   ArrowLeft,
 } from "lucide-react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 interface Fee {
   id: number;
@@ -53,11 +53,8 @@ interface Fee {
   amount: number;
 }
 
-export default function DepartmentFeesPage() {
+export default function NursingFees() {
   const navigate = useNavigate();
-  const { department } = useParams();
-  const departmentName =
-    department === "nursing" ? "Nursing" : "Other Departments";
 
   const [fees, setFees] = useState<Fee[]>([
     { id: 1, title: "Tuition Fee", amount: 150000 },
@@ -155,10 +152,10 @@ export default function DepartmentFeesPage() {
               </div>
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-foreground">
-                  {departmentName} Fees
+                  Nursing Fees
                 </h1>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Manage fees for {departmentName.toLowerCase()}
+                  Manage fees for {"Nursing".toLowerCase()}
                 </p>
               </div>
             </div>

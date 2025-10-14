@@ -5,7 +5,7 @@ import { useEffect, useState, useCallback } from "react";
 export const useAccessControls = () => {
   const [routes, setRoutes] = useState<IRoutes | null>(null);
   const [protectedRoutes, setProtectedRoutes] = useState<IProtectedRoutes[]>(
-    []
+    [],
   );
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

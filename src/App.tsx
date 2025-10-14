@@ -17,6 +17,7 @@ import {
   AccessControl,
   ManageFeesPage,
   OtherDepartmentFeesPage,
+  NursingFees,
 } from "@/pages/dashboard";
 import { ProtectedRoute } from "@/routes/ProtectedRoutes";
 
@@ -52,6 +53,10 @@ const App = () => {
             <Route
               path="bursary/manage-fees/other-department"
               element={<OtherDepartmentFeesPage />}
+            />
+            <Route
+              path="bursary/manage-fees/nursing"
+              element={<NursingFees />}
             />
             <Route path="staffs" element={<ViewStaffs />} />
             <Route path="staffs/:staffId" element={<ViewStaffDetails />} />
