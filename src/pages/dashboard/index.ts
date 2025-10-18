@@ -15,7 +15,7 @@ import AccessControl from "./AccessControl";
 import ManageFeesPage from "./ManageFees";
 import OtherDepartmentFeesPage from "./OtherDepartmentFeesPage";
 import NursingFees from "./NursingFees";
-import SessionManagement from "./SessionManagement";  
+import SessionManagement from "./SessionManagement";
 export {
   Academics,
   AddResults,
@@ -34,5 +34,5 @@ export {
   ManageFeesPage,
   OtherDepartmentFeesPage,
   NursingFees,
-  SessionManagement
+  SessionManagement,
 };

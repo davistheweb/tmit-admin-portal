@@ -20,7 +20,7 @@ export const sessionSchema = z
     {
       message: "End date must be after start date",
       path: ["end_date"],
-    }
+    },
   );
 
 export type SessionFormData = z.infer<typeof sessionSchema>;

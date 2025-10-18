@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { SessionForm } from "./_components/SessionForm";
-import { SessionList } from "./_components/SessionList";
 import { sessionService } from "@/api/services/Sessions";
-import type { Session, SessionFormData } from "@/lib/validators/SessionFormSchema";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type {
+  Session,
+  SessionFormData,
+} from "@/lib/validators/SessionFormSchema";
+import { SessionFormDialog } from "./_components/SessionForm";
+import { SessionList } from "./_components/SessionList";
+import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle, CheckCircle } from "lucide-react";
+import { AlertCircle, CheckCircle, Plus } from "lucide-react";
 import { toast } from "sonner";
 
 export default function SessionManagement() {
@@ -13,6 +16,7 @@ export default function SessionManagement() {
   const [activeSessions, setActiveSessions] = useState<Session[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [editingSession, setEditingSession] = useState<Session | undefined>();
+  const [formDialogOpen, setFormDialogOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Fetch all sessions
@@ -44,9 +48,8 @@ export default function SessionManagement() {
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to fetch active sessions";
-      const fullMessage = `${message}. Please ensure the API server is running and VITE_API_URL is configured correctly.`;
-      console.error("[v0] Failed to fetch active sessions:", fullMessage);
-      toast.error(fullMessage);
+      console.error("[v0] Failed to fetch active sessions:", message);
+      toast.error(message);
     }
   };
 
@@ -55,6 +58,16 @@ export default function SessionManagement() {
     fetchSessions();
     fetchActiveSessions();
   }, []);
+
+  const handleCreateNew = () => {
+    setEditingSession(undefined);
+    setFormDialogOpen(true);
+  };
+
+  const handleEdit = (session: Session) => {
+    setEditingSession(session);
+    setFormDialogOpen(true);
+  };
 
   // Handle create/update session
   const handleSubmit = async (data: SessionFormData) => {
@@ -125,13 +138,19 @@ export default function SessionManagement() {
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
-        <div className="space-y-2">
-          <h1 className="text-3xl font-bold text-foreground">
-            Session Management
-          </h1>
-          <p className="text-muted-foreground">
-            Manage academic sessions for your school
-          </p>
+        <div className="flex items-center justify-between">
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold text-foreground">
+              Session Management
+            </h1>
+            <p className="text-muted-foreground">
+              Manage academic sessions for your school
+            </p>
+          </div>
+          <Button onClick={handleCreateNew} size="lg">
+            <Plus className="h-4 w-4 mr-2" />
+            New Session
+          </Button>
         </div>
 
         {/* Error Alert */}
@@ -160,41 +179,22 @@ export default function SessionManagement() {
           </Alert>
         )}
 
-        {/* Main Content */}
-        <Tabs defaultValue="all" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="all">All Sessions</TabsTrigger>
-            <TabsTrigger value="create">
-              {editingSession ? "Edit Session" : "Create Session"}
-            </TabsTrigger>
-          </TabsList>
+        {/* Sessions List */}
+        <SessionList
+          sessions={sessions}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onToggle={handleToggle}
+          isLoading={isLoading}
+        />
 
-          {/* All Sessions Tab */}
-          <TabsContent value="all" className="space-y-4">
-            <SessionList
-              sessions={sessions}
-              onEdit={setEditingSession}
-              onDelete={handleDelete}
-              onToggle={handleToggle}
-              isLoading={isLoading}
-            />
-          </TabsContent>
-
-          {/* Create/Edit Session Tab */}
-          <TabsContent value="create">
-            <SessionForm
-              onSubmit={handleSubmit}
-              initialData={editingSession}
-              isLoading={isLoading}
-              title={editingSession ? "Edit Session" : "Create New Session"}
-              description={
-                editingSession
-                  ? "Update the session details"
-                  : "Add a new academic session to the system"
-              }
-            />
-          </TabsContent>
-        </Tabs>
+        <SessionFormDialog
+          open={formDialogOpen}
+          onOpenChange={setFormDialogOpen}
+          onSubmit={handleSubmit}
+          initialData={editingSession}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

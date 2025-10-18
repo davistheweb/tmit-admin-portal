@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import type { Session } from "@/lib/validators/SessionFormSchema";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +20,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Edit2, Trash2, Power, PowerOff } from "lucide-react";
-import { format } from "date-fns";
 
 interface SessionListProps {
   sessions: Session[];
@@ -51,20 +51,16 @@ export function SessionList({
   return (
     <div className="space-y-4">
       {sessions.map((session) => (
-        <Card key={session.id} className="overflow-hidden">
+        <Card
+          key={session.id}
+          className="overflow-hidden hover:shadow-md transition-shadow"
+        >
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-3">
                   <CardTitle className="text-lg">{session.name}</CardTitle>
-                  <Badge
-                    variant={session.is_active ? "default" : "secondary"}
-                    className={
-                      session.is_active
-                        ? "bg-accent text-accent-foreground"
-                        : ""
-                    }
-                  >
+                  <Badge variant={session.is_active ? "default" : "secondary"}>
                     {session.is_active ? "Active" : "Inactive"}
                   </Badge>
                 </div>
@@ -76,7 +72,7 @@ export function SessionList({
             </div>
           </CardHeader>
           <CardContent>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {/* Edit Button */}
               <Button
                 variant="outline"
@@ -94,7 +90,6 @@ export function SessionList({
                 size="sm"
                 onClick={() => onToggle(session.id)}
                 disabled={isLoading}
-                className="text-accent hover:text-accent hover:bg-accent/10"
               >
                 {session.is_active ? (
                   <>

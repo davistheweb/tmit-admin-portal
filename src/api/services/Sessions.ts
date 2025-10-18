@@ -1,5 +1,8 @@
 import api from "../api";
-import type { Session, SessionFormData } from "@/lib/validators/SessionFormSchema";
+import type {
+  Session,
+  SessionFormData,
+} from "@/lib/validators/SessionFormSchema";
 
 export const sessionService = {
   // Create a new session
@@ -51,7 +54,7 @@ export const sessionService = {
 
   // Toggle session active status
   async toggleSessionActive(id: number): Promise<Session> {
-    const response = await api.post(`/api/admin/sessions/${id}/toggle-active`);
+    const response = await api.patch(`/api/admin/sessions/${id}/toggle-active`);
     return response.data;
   },
 
