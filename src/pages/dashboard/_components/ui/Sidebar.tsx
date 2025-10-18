@@ -15,6 +15,7 @@ import {
   UserCog,
   ChevronDown,
   Wallet,
+  Settings,
 } from "lucide-react";
 import { schoolLogo } from "@/assets";
 import {
@@ -35,6 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   closeSidebar,
 }) => {
   const [bursaryOpen, setBursaryOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const navLinks = [
     {
@@ -85,6 +87,13 @@ const Sidebar: React.FC<SidebarProps> = ({
     {
       name: "Manage Fees",
       href: "/dashboard/bursary/manage-fees",
+    },
+  ];
+
+  const settingsItems = [
+    {
+      name: "Session Settings",
+      href: "/dashboard/sessions",
     },
   ];
 
@@ -140,6 +149,32 @@ const Sidebar: React.FC<SidebarProps> = ({
           </CollapsibleTrigger>
           <CollapsibleContent className="pl-4 space-y-1 mt-1">
             {bursaryItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-100 rounded text-[13px]"
+                onClick={() => isMobile && closeSidebar()}
+              >
+                <span className="ml-6">{item.name}</span>
+              </Link>
+            ))}
+          </CollapsibleContent>
+        </Collapsible>
+
+        <Collapsible open={settingsOpen} onOpenChange={setSettingsOpen}>
+          <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 text-gray-700 hover:bg-gray-100 rounded text-[14px] cursor-pointer">
+            <div className="flex items-center">
+              <Settings className="w-4 h-4" />
+              <span className="ml-3">Settings</span>
+            </div>
+            <ChevronDown
+              className={`w-4 h-4 transition-transform ${
+                settingsOpen ? "rotate-180" : ""
+              }`}
+            />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pl-4 space-y-1 mt-1">
+            {settingsItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}

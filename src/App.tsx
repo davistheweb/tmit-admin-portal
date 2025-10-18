@@ -18,6 +18,7 @@ import {
   ManageFeesPage,
   OtherDepartmentFeesPage,
   NursingFees,
+  SessionManagement,
 } from "@/pages/dashboard";
 import { ProtectedRoute } from "@/routes/ProtectedRoutes";
 
@@ -65,6 +66,7 @@ const App = () => {
               element={<RolesAndPermissions />}
             />
             <Route path="access-control" element={<AccessControl />} />
+            <Route path="sessions" element={<SessionManagement />} />
             <Route path="change-password" element={<ChangePassword />} />
           </Route>
           <Route path="*" element={<p>Not found!</p>} />

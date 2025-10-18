@@ -63,7 +63,7 @@ export default function ManageFeesPage() {
                   {dept.description}
                 </p>
                 <Button
-                  className="w-full bg-green-500 hover:bg-green-600 text-white"
+                  className="w-full bg-green-500 hover:bg-green-600 text-white cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     navigate(dept.route);
