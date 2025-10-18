@@ -20,13 +20,33 @@ export const sessionSchema = z
     {
       message: "End date must be after start date",
       path: ["end_date"],
-    },
+    }
   );
 
 export type SessionFormData = z.infer<typeof sessionSchema>;
 
 export interface Session extends SessionFormData {
   id: number;
-  created_at?: string;
-  updated_at?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PaginatedSessions {
+  current_page: number;
+  data: Session[];
+  first_page_url: string;
+  from: number;
+  last_page: number;
+  last_page_url: string;
+  links: Array<{
+    url: string | null;
+    label: string;
+    active: boolean;
+  }>;
+  next_page_url: string | null;
+  path: string;
+  per_page: number;
+  prev_page_url: string | null;
+  to: number;
+  total: number;
 }

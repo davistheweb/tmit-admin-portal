@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { sessionService } from "@/api/services/Sessions";
 import type {
   Session,
@@ -19,45 +19,37 @@ export default function SessionManagement() {
   const [formDialogOpen, setFormDialogOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch all sessions
-  const fetchSessions = async () => {
+  const fetchSessions = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
     try {
-      setIsLoading(true);
-      setError(null);
       const data = await sessionService.getSessions();
       setSessions(data);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to fetch sessions";
-      const fullMessage = `${message}. Please ensure the API server is running and VITE_API_URL is configured correctly.`;
-      setError(fullMessage);
-      toast.error(fullMessage);
-      console.error("[v0] Fetch sessions error:", err);
+      setError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  // Fetch active sessions
-  const fetchActiveSessions = async () => {
+  const fetchActiveSessions = useCallback(async () => {
     try {
-      console.log("[v0] Fetching active sessions...");
       const data = await sessionService.getActiveSessions();
-      console.log("[v0] Active sessions fetched:", data);
       setActiveSessions(data);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to fetch active sessions";
-      console.error("[v0] Failed to fetch active sessions:", message);
       toast.error(message);
     }
-  };
+  }, []);
 
-  // Initial load
   useEffect(() => {
     fetchSessions();
     fetchActiveSessions();
-  }, []);
+  }, [fetchSessions, fetchActiveSessions]);
 
   const handleCreateNew = () => {
     setEditingSession(undefined);
@@ -69,12 +61,10 @@ export default function SessionManagement() {
     setFormDialogOpen(true);
   };
 
-  // Handle create/update session
   const handleSubmit = async (data: SessionFormData) => {
+    setIsLoading(true);
+    setError(null);
     try {
-      setIsLoading(true);
-      setError(null);
-
       if (editingSession) {
         await sessionService.updateSession(editingSession.id, data);
         toast.success("Session updated successfully");
@@ -82,10 +72,9 @@ export default function SessionManagement() {
         await sessionService.createSession(data);
         toast.success("Session created successfully");
       }
-
       setEditingSession(undefined);
-      await fetchSessions();
-      await fetchActiveSessions();
+      setFormDialogOpen(false);
+      await Promise.all([fetchSessions(), fetchActiveSessions()]);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to save session";
@@ -96,15 +85,13 @@ export default function SessionManagement() {
     }
   };
 
-  // Handle delete session
   const handleDelete = async (id: number) => {
+    setIsLoading(true);
+    setError(null);
     try {
-      setIsLoading(true);
-      setError(null);
       await sessionService.deleteSession(id);
       toast.success("Session deleted successfully");
-      await fetchSessions();
-      await fetchActiveSessions();
+      await Promise.all([fetchSessions(), fetchActiveSessions()]);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to delete session";
@@ -115,15 +102,13 @@ export default function SessionManagement() {
     }
   };
 
-  // Handle toggle session active
   const handleToggle = async (id: number) => {
+    setIsLoading(true);
+    setError(null);
     try {
-      setIsLoading(true);
-      setError(null);
       await sessionService.toggleSessionActive(id);
       toast.success("Session status updated");
-      await fetchSessions();
-      await fetchActiveSessions();
+      await Promise.all([fetchSessions(), fetchActiveSessions()]);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to toggle session";
@@ -137,7 +122,6 @@ export default function SessionManagement() {
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-6xl mx-auto space-y-6">
-        {/* Header */}
         <div className="flex items-center justify-between">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-foreground">
@@ -147,13 +131,12 @@ export default function SessionManagement() {
               Manage academic sessions for your school
             </p>
           </div>
-          <Button onClick={handleCreateNew} size="lg">
+          <Button onClick={handleCreateNew} size="lg" disabled={isLoading}>
             <Plus className="h-4 w-4 mr-2" />
             New Session
           </Button>
         </div>
 
-        {/* Error Alert */}
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -161,7 +144,6 @@ export default function SessionManagement() {
           </Alert>
         )}
 
-        {/* Active Sessions Summary */}
         {activeSessions.length > 0 && (
           <Alert className="border-accent bg-accent/5">
             <CheckCircle className="h-4 w-4 text-accent" />
@@ -179,7 +161,6 @@ export default function SessionManagement() {
           </Alert>
         )}
 
-        {/* Sessions List */}
         <SessionList
           sessions={sessions}
           onEdit={handleEdit}

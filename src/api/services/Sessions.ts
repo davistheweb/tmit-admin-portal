@@ -1,65 +1,107 @@
+import { AxiosError } from "axios";
 import api from "../api";
 import type {
   Session,
   SessionFormData,
+  PaginatedSessions,
 } from "@/lib/validators/SessionFormSchema";
 
+interface ApiErrorResponse {
+  message: string;
+}
+
 export const sessionService = {
-  // Create a new session
   async createSession(data: SessionFormData): Promise<Session> {
-    const payload = {
-      ...data,
-      ...(data.is_active && { is_active: data.is_active }),
-    };
-    const response = await api.post("/api/admin/sessions", payload);
-    return response.data;
-  },
-
-  // Get all sessions
-  async getSessions(): Promise<Session[]> {
-    const response = await api.get("/api/admin/sessions");
-    return Array.isArray(response.data.data)
-      ? response.data.data
-      : response.data;
-  },
-
-  // Get active sessions
-  async getActiveSessions(): Promise<Session[]> {
-    const response = await api.get("/api/admin/sessions/active/current");
-    if (Array.isArray(response.data)) {
+    try {
+      const payload = {
+        ...data,
+        is_active: data.is_active ?? false,
+      };
+      const response = await api.post<Session>("/api/admin/sessions", payload);
       return response.data;
+    } catch (error) {
+      throw new Error(this.handleApiError(error, "Failed to create session"));
     }
-    if (response.data.data && Array.isArray(response.data.data)) {
+  },
+
+  async getSessions(): Promise<Session[]> {
+    try {
+      const response = await api.get<PaginatedSessions>("/api/admin/sessions");
       return response.data.data;
+    } catch (error) {
+      throw new Error(this.handleApiError(error, "Failed to fetch sessions"));
     }
-    // If single session object, wrap in array
-    return response.data ? [response.data] : [];
   },
 
-  // Get session by ID
+  async getActiveSessions(): Promise<Session[]> {
+    try {
+      const response = await api.get<Session[] | Session>(
+        "/api/admin/sessions/active/current"
+      );
+      return Array.isArray(response.data)
+        ? response.data
+        : [response.data].filter(Boolean);
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 404) {
+        return []; // Return empty array for 404 instead of throwing
+      }
+      throw new Error(
+        this.handleApiError(error, "Failed to fetch active sessions")
+      );
+    }
+  },
+
   async getSessionById(id: number): Promise<Session> {
-    const response = await api.get(`/api/admin/sessions/${id}`);
-    return response.data;
+    try {
+      const response = await api.get<Session>(`/api/admin/sessions/${id}`);
+      return response.data;
+    } catch (error) {
+      throw new Error(this.handleApiError(error, "Failed to fetch session"));
+    }
   },
 
-  // Update session
   async updateSession(id: number, data: SessionFormData): Promise<Session> {
-    const payload = {
-      ...data,
-      ...(data.is_active !== undefined && { is_active: data.is_active }),
-    };
-    const response = await api.put(`/api/admin/sessions/${id}`, payload);
-    return response.data;
+    try {
+      const payload = {
+        ...data,
+        is_active: data.is_active ?? false,
+      };
+      const response = await api.put<Session>(
+        `/api/admin/sessions/${id}`,
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(this.handleApiError(error, "Failed to update session"));
+    }
   },
 
-  // Toggle session active status
   async toggleSessionActive(id: number): Promise<Session> {
-    const response = await api.patch(`/api/admin/sessions/${id}/toggle-active`);
-    return response.data;
+    try {
+      const response = await api.patch<Session>(
+        `/api/admin/sessions/${id}/toggle-active`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(
+        this.handleApiError(error, "Failed to toggle session status")
+      );
+    }
   },
 
-  // Delete session
   async deleteSession(id: number): Promise<void> {
-    await api.delete(`/api/admin/sessions/${id}`);
+    try {
+      await api.delete(`/api/admin/sessions/${id}`);
+    } catch (error) {
+      throw new Error(this.handleApiError(error, "Failed to delete session"));
+    }
+  },
+
+  handleApiError(error: unknown, defaultMessage: string): string {
+    if (error instanceof AxiosError) {
+      const apiError = error.response?.data as ApiErrorResponse;
+      return apiError?.message || defaultMessage;
+    }
+    return defaultMessage;
   },
 };

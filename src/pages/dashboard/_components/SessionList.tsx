@@ -36,7 +36,7 @@ export function SessionList({
   onToggle,
   isLoading = false,
 }: SessionListProps) {
-  if (sessions.length === 0) {
+  if (!sessions?.length) {
     return (
       <Card>
         <CardContent className="flex flex-col items-center justify-center py-12">
@@ -72,8 +72,7 @@ export function SessionList({
             </div>
           </CardHeader>
           <CardContent>
-            <div className="flex gap-2 flex-wrap">
-              {/* Edit Button */}
+            <div className="flex gap-2">
               <Button
                 variant="outline"
                 size="sm"
@@ -83,8 +82,6 @@ export function SessionList({
                 <Edit2 className="h-4 w-4 mr-2" />
                 Edit
               </Button>
-
-              {/* Toggle Active Button */}
               <Button
                 variant="outline"
                 size="sm"
@@ -103,15 +100,13 @@ export function SessionList({
                   </>
                 )}
               </Button>
-
-              {/* Delete Button */}
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
                     variant="outline"
                     size="sm"
                     disabled={isLoading}
-                    className="text-destructive hover:text-destructive hover:bg-destructive/10 bg-transparent"
+                    className="text-destructive hover:text-destructive hover:bg-destructive/10"
                   >
                     <Trash2 className="h-4 w-4 mr-2" />
                     Delete

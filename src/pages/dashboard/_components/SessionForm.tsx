@@ -52,29 +52,22 @@ export function SessionFormDialog({
   });
 
   useEffect(() => {
-    if (open) {
-      if (initialData) {
-        form.reset({
-          name: initialData.name,
-          start_date: initialData.start_date,
-          end_date: initialData.end_date,
-          is_active: initialData.is_active || false,
-        });
-      } else {
-        form.reset({
-          name: "",
-          start_date: "",
-          end_date: "",
-          is_active: false,
-        });
-      }
+    if (open && initialData) {
+      form.reset({
+        name: initialData.name,
+        start_date: initialData.start_date.split("T")[0], // Format for input[type=date]
+        end_date: initialData.end_date.split("T")[0],
+        is_active: initialData.is_active,
+      });
+    } else if (open) {
+      form.reset({
+        name: "",
+        start_date: "",
+        end_date: "",
+        is_active: false,
+      });
     }
   }, [open, initialData, form]);
-
-  const handleSubmit = async (data: SessionFormData) => {
-    await onSubmit(data);
-    onOpenChange(false);
-  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -89,13 +82,8 @@ export function SessionFormDialog({
               : "Add a new academic session to the system"}
           </DialogDescription>
         </DialogHeader>
-
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-6"
-          >
-            {/* Session Name */}
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="name"
@@ -113,8 +101,6 @@ export function SessionFormDialog({
                 </FormItem>
               )}
             />
-
-            {/* Start Date */}
             <FormField
               control={form.control}
               name="start_date"
@@ -128,8 +114,6 @@ export function SessionFormDialog({
                 </FormItem>
               )}
             />
-
-            {/* End Date */}
             <FormField
               control={form.control}
               name="end_date"
@@ -143,13 +127,11 @@ export function SessionFormDialog({
                 </FormItem>
               )}
             />
-
-            {/* Active Toggle */}
             <FormField
               control={form.control}
               name="is_active"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border border-border p-4">
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                   <div className="space-y-0.5">
                     <FormLabel className="text-base">Activate Now</FormLabel>
                     <FormDescription>
@@ -166,8 +148,6 @@ export function SessionFormDialog({
                 </FormItem>
               )}
             />
-
-            {/* Actions */}
             <div className="flex gap-3 justify-end pt-4">
               <Button
                 type="button"
@@ -181,8 +161,8 @@ export function SessionFormDialog({
                 {isLoading
                   ? "Saving..."
                   : initialData
-                    ? "Update Session"
-                    : "Create Session"}
+                  ? "Update Session"
+                  : "Create Session"}
               </Button>
             </div>
           </form>
