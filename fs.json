@@ -1,0 +1,33 @@
+{
+  "message": "Fee structure retrieved successfully",
+  "data": {
+    "id": 2,
+    "amount": "250000.00",
+    "description": "Idk",
+    "created_at": "2025-10-19T10:56:21.000000Z",
+    "updated_at": "2025-10-19T10:56:21.000000Z",
+    "session_id": 3,
+    "department_id": 1,
+    "level": 100,
+    "installment_first": null,
+    "installment_second": null,
+    "allow_installment": false,
+    "department": {
+      "id": 1,
+      "name": "Computer Science",
+      "code": "CMS",
+      "faculty_id": 2,
+      "created_at": "2025-10-19T01:57:34.000000Z",
+      "updated_at": "2025-10-19T01:57:34.000000Z"
+    },
+    "session": {
+      "id": 3,
+      "name": "2025/2026",
+      "start_date": "2025-10-25T00:00:00.000000Z",
+      "end_date": "2025-10-31T00:00:00.000000Z",
+      "is_active": true,
+      "created_at": "2025-10-19T07:16:36.000000Z",
+      "updated_at": "2025-10-19T12:02:59.000000Z"
+    }
+  }
+}

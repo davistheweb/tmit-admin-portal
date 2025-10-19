@@ -15,12 +15,10 @@ import {
   ViewStaffDetails,
   RolesAndPermissions,
   AccessControl,
-  ManageFeesPage,
-  OtherDepartmentFeesPage,
-  NursingFees,
   SessionManagement,
 } from "@/pages/dashboard";
 import { ProtectedRoute } from "@/routes/ProtectedRoutes";
+import FeeStructureManagement from "./pages/dashboard/FeeStructureManagement";
 
 const App = () => {
   return (
@@ -50,15 +48,7 @@ const App = () => {
             <Route path="select-department" element={<DepartmentSelector />} />
             <Route path="applications" element={<ApplicationsPage />} />
             <Route path="add-results" element={<AddResults />} />
-            <Route path="bursary/manage-fees" element={<ManageFeesPage />} />
-            <Route
-              path="bursary/manage-fees/other-department"
-              element={<OtherDepartmentFeesPage />}
-            />
-            <Route
-              path="bursary/manage-fees/nursing"
-              element={<NursingFees />}
-            />
+            <Route path="bursary/manage-fees" element={<FeeStructureManagement />} />
             <Route path="staffs" element={<ViewStaffs />} />
             <Route path="staffs/:staffId" element={<ViewStaffDetails />} />
             <Route

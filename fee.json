@@ -1,0 +1,33 @@
+{
+  "message": "Fee structure created successfully",
+  "data": {
+    "department_id": 1,
+    "session_id": 3,
+    "level": 100,
+    "amount": "150000.00",
+    "installment_first": "80000.00",
+    "installment_second": "70000.00",
+    "allow_installment": true,
+    "description": "School fees for 100 level Computer Science",
+    "updated_at": "2025-10-19T07:21:53.000000Z",
+    "created_at": "2025-10-19T07:21:53.000000Z",
+    "id": 1,
+    "department": {
+      "id": 1,
+      "name": "Computer Science",
+      "code": "CMS",
+      "faculty_id": 2,
+      "created_at": "2025-10-19T01:57:34.000000Z",
+      "updated_at": "2025-10-19T01:57:34.000000Z"
+    },
+    "session": {
+      "id": 3,
+      "name": "2025/2026",
+      "start_date": "2025-10-20T00:00:00.000000Z",
+      "end_date": "2025-10-31T00:00:00.000000Z",
+      "is_active": true,
+      "created_at": "2025-10-19T07:16:36.000000Z",
+      "updated_at": "2025-10-19T07:16:40.000000Z"
+    }
+  }
+}

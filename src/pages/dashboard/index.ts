@@ -12,10 +12,9 @@ import ViewStaffs from "./ViewStaffs";
 import RolesAndPermissions from "./RolesAndPermissions";
 import ViewStaffDetails from "./ViewStaffDetails";
 import AccessControl from "./AccessControl";
-import ManageFeesPage from "./ManageFees";
-import OtherDepartmentFeesPage from "./OtherDepartmentFeesPage";
-import NursingFees from "./NursingFees";
+import ManageFeesPage from "./FeeStructureManagement";
 import SessionManagement from "./SessionManagement";
+import FeeStructureManagement from "./FeeStructureManagement";
 export {
   Academics,
   AddResults,
@@ -32,7 +31,6 @@ export {
   ViewStaffDetails,
   AccessControl,
   ManageFeesPage,
-  OtherDepartmentFeesPage,
-  NursingFees,
+  FeeStructureManagement,
   SessionManagement,
 };
